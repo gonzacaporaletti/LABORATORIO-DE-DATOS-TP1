@@ -1,0 +1,519 @@
+Departamento,Provincia,Cantidad de CC con cap>100
+Avellaneda,Buenos Aires,20
+La Plata,Buenos Aires,8
+Lomas De Zamora,Buenos Aires,3
+Almirante Brown,Buenos Aires,2
+General Pueyrredon,Buenos Aires,2
+Tres De Febrero,Buenos Aires,1
+Bragado,Buenos Aires,1
+Mercedes,Buenos Aires,1
+Olavarria,Buenos Aires,1
+Coronel Brandsen,Buenos Aires,0
+San Isidro,Buenos Aires,0
+Pinamar,Buenos Aires,0
+Balcarce,Buenos Aires,0
+Junin,Buenos Aires,0
+La Costa,Buenos Aires,0
+Berisso,Buenos Aires,0
+Lincoln,Buenos Aires,0
+Pergamino,Buenos Aires,0
+Coronel Dorrego,Buenos Aires,0
+General Guido,Buenos Aires,0
+Baradero,Buenos Aires,0
+Jose C. Paz,Buenos Aires,0
+General Arenales,Buenos Aires,0
+Laprida,Buenos Aires,0
+Zarate,Buenos Aires,0
+Castelli,Buenos Aires,0
+Magdalena,Buenos Aires,0
+Coronel De Marina Leonardo Rosales,Buenos Aires,0
+Hipolito Yrigoyen,Buenos Aires,0
+Villarino,Buenos Aires,0
+General La Madrid,Buenos Aires,0
+Berazategui,Buenos Aires,0
+Loberia,Buenos Aires,0
+Marcos Paz,Buenos Aires,0
+Coronel Pringles,Buenos Aires,0
+Carlos Tejedor,Buenos Aires,0
+General Alvear,Buenos Aires,0
+Exaltacion De La Cruz,Buenos Aires,0
+Rauch,Buenos Aires,0
+Saavedra,Buenos Aires,0
+Saladillo,Buenos Aires,0
+Leandro N. Alem,Buenos Aires,0
+Necochea,Buenos Aires,0
+Quilmes,Buenos Aires,0
+General Lavalle,Buenos Aires,0
+Chacabuco,Buenos Aires,0
+Navarro,Buenos Aires,0
+General Pinto,Buenos Aires,0
+Rivadavia,Buenos Aires,0
+25 De Mayo,Buenos Aires,0
+Bolivar,Buenos Aires,0
+Benito Juarez,Buenos Aires,0
+Alberti,Buenos Aires,0
+Ensenada,Buenos Aires,0
+Tigre,Buenos Aires,0
+San Antonio De Areco,Buenos Aires,0
+Lezama,Buenos Aires,0
+Adolfo Gonzales Chaves,Buenos Aires,0
+Moron,Buenos Aires,0
+Trenque Lauquen,Buenos Aires,0
+General Alvarado,Buenos Aires,0
+Tapalque,Buenos Aires,0
+Esteban Echeverria,Buenos Aires,0
+Adolfo Alsina,Buenos Aires,0
+Merlo,Buenos Aires,0
+Pigue,Buenos Aires,0
+9 De Julio,Buenos Aires,0
+Presidente Peron,Buenos Aires,0
+Villa Gesell,Buenos Aires,0
+Maipu,Buenos Aires,0
+San Pedro,Buenos Aires,0
+Florentino Ameghino,Buenos Aires,0
+Punta Indio,Buenos Aires,0
+Bahia Blanca,Buenos Aires,0
+Colon,Buenos Aires,0
+Carlos Casares,Buenos Aires,0
+Florencio Varela,Buenos Aires,0
+General Las Heras,Buenos Aires,0
+Azul,Buenos Aires,0
+Chivilcoy,Buenos Aires,0
+General Viamonte,Buenos Aires,0
+Moreno,Buenos Aires,0
+Ituzaingo,Buenos Aires,0
+Tres Arroyos,Buenos Aires,0
+Pilar,Buenos Aires,0
+San Fernando,Buenos Aires,0
+Dolores,Buenos Aires,0
+Chascomus,Buenos Aires,0
+Brandsen,Buenos Aires,0
+General Rodriguez,Buenos Aires,0
+Pehuajo,Buenos Aires,0
+Tordillo,Buenos Aires,0
+General Juan Madariaga,Buenos Aires,0
+Mar Chiquita,Buenos Aires,0
+Salliquelo,Buenos Aires,0
+Hurlingham,Buenos Aires,0
+Suipacha,Buenos Aires,0
+Patagones,Buenos Aires,0
+Guamini,Buenos Aires,0
+Canuelas,Buenos Aires,0
+General Belgrano,Buenos Aires,0
+Salto,Buenos Aires,0
+Vicente Lopez,Buenos Aires,0
+General San Martin,Buenos Aires,0
+Tandil,Buenos Aires,0
+Pellegrini,Buenos Aires,0
+Veronica,Buenos Aires,0
+General Paz,Buenos Aires,0
+San Cayetano,Buenos Aires,0
+Pila,Buenos Aires,0
+Ayacucho,Buenos Aires,0
+Lobos,Buenos Aires,0
+Malvinas Argentinas,Buenos Aires,0
+Monte Hermoso,Buenos Aires,0
+Las Flores,Buenos Aires,0
+Campana,Buenos Aires,0
+Capitan Sarmiento,Buenos Aires,0
+San Miguel,Buenos Aires,0
+Roque Perez,Buenos Aires,0
+Escobar,Buenos Aires,0
+San Andres De Giles,Buenos Aires,0
+Tres Lomas,Buenos Aires,0
+Daireaux,Buenos Aires,0
+Ramallo,Buenos Aires,0
+Ezeiza,Buenos Aires,0
+General Villegas,Buenos Aires,0
+Carmen De Areco,Buenos Aires,0
+San Vicente,Buenos Aires,0
+Monte,Buenos Aires,0
+Lujan,Buenos Aires,0
+Lanus,Buenos Aires,0
+Rojas,Buenos Aires,0
+Arrecifes,Buenos Aires,0
+San Nicolas,Buenos Aires,0
+La Matanza,Buenos Aires,0
+Puan,Buenos Aires,0
+Coronel Suarez,Buenos Aires,0
+Tornquist,Buenos Aires,0
+Santa Rosa,Catamarca,0
+Santa Maria,Catamarca,0
+Tinogasta,Catamarca,0
+El Alto,Catamarca,0
+Andalgala,Catamarca,0
+La Paz,Catamarca,0
+Belen,Catamarca,0
+Poman,Catamarca,0
+Capayan,Catamarca,0
+Fray Mamerto Esquiu,Catamarca,0
+Ancasti,Catamarca,0
+Antofagasta De La Sierra,Catamarca,0
+Valle Viejo,Catamarca,0
+Capital,Catamarca,0
+Paclin,Catamarca,0
+Ambato,Catamarca,0
+San Fernando,Chaco,2
+Mayor Luis J. Fontana,Chaco,1
+O'Higgins,Chaco,1
+General Belgrano,Chaco,0
+General Guemes,Chaco,0
+Libertador General San Martin,Chaco,0
+Fray Justo Santa Maria De Oro,Chaco,0
+San Lorenzo,Chaco,0
+Tapenaga,Chaco,0
+25 De Mayo,Chaco,0
+Almirante Brown,Chaco,0
+2 De Abril,Chaco,0
+Chacabuco,Chaco,0
+Presidencia De La Plaza,Chaco,0
+Quitilipi,Chaco,0
+9 De Julio,Chaco,0
+Libertad,Chaco,0
+Bermejo,Chaco,0
+Independencia,Chaco,0
+Comandante Fernandez,Chaco,0
+1º De Mayo,Chaco,0
+General Donovan,Chaco,0
+12 De Octubre,Chaco,0
+Sargento Cabral,Chaco,0
+Maipu,Chaco,0
+Biedma,Chubut,1
+Rawson,Chubut,1
+Languineo,Chubut,0
+Telsen,Chubut,0
+Futaleufu,Chubut,0
+Florentino Ameghino,Chubut,0
+Gastre,Chubut,0
+Gaiman,Chubut,0
+Martires,Chubut,0
+Rio Senguer,Chubut,0
+Sarmiento,Chubut,0
+Paso De Indios,Chubut,0
+Cushamen,Chubut,0
+Escalante,Chubut,0
+Tehuelches,Chubut,0
+Ciudad Autonoma De Buenos Aires,Ciudad Autónoma de Buenos Aires,78
+Capital,Corrientes,1
+Santo Tome,Corrientes,0
+Saladas,Corrientes,0
+San Luis Del Palmar,Corrientes,0
+Sauce,Corrientes,0
+Lavalle,Corrientes,0
+San Roque,Corrientes,0
+Bella Vista,Corrientes,0
+Concepcion,Corrientes,0
+Monte Caseros,Corrientes,0
+Goya,Corrientes,0
+Curuzu Cuatia,Corrientes,0
+General Paz,Corrientes,0
+San Cosme,Corrientes,0
+General Alvear,Corrientes,0
+Paso De Los Libres,Corrientes,0
+San Martin,Corrientes,0
+Ituzaingo,Corrientes,0
+Mercedes,Corrientes,0
+Itati,Corrientes,0
+San Miguel,Corrientes,0
+Empedrado,Corrientes,0
+Mburucuya,Corrientes,0
+Esquina,Corrientes,0
+Beron De Astrada,Corrientes,0
+Capital,Córdoba,5
+Marcos Juarez,Córdoba,2
+Punilla,Córdoba,2
+San Justo,Córdoba,2
+Tercero Arriba,Córdoba,1
+Ischilin,Córdoba,1
+Minas,Córdoba,1
+Juarez Celman,Córdoba,1
+Rio Cuarto,Córdoba,1
+Colon,Córdoba,1
+San Alberto,Córdoba,0
+Union,Córdoba,0
+Cruz Del Eje,Córdoba,0
+Sobremonte,Córdoba,0
+Presidente Roque Saenz Pena,Córdoba,0
+Rio Segundo,Córdoba,0
+Totoral,Córdoba,0
+Tulumba,Córdoba,0
+General Roca,Córdoba,0
+Pocho,Córdoba,0
+Rio Seco,Córdoba,0
+Calamuchita,Córdoba,0
+Santa Maria,Córdoba,0
+General San Martin,Córdoba,0
+San Javier,Córdoba,0
+Rio Primero,Córdoba,0
+Parana,Entre Ríos,3
+Concordia,Entre Ríos,1
+Islas Del Ibicuy,Entre Ríos,0
+Gualeguay,Entre Ríos,0
+Feliciano,Entre Ríos,0
+San Salvador,Entre Ríos,0
+Tala,Entre Ríos,0
+Villaguay,Entre Ríos,0
+Federal,Entre Ríos,0
+Colon,Entre Ríos,0
+Federacion,Entre Ríos,0
+Nogoya,Entre Ríos,0
+La Paz,Entre Ríos,0
+Gualeguaychu,Entre Ríos,0
+Diamante,Entre Ríos,0
+Uruguay,Entre Ríos,0
+Victoria,Entre Ríos,0
+Pirane,Formosa,0
+Formosa,Formosa,0
+Pilagas,Formosa,0
+Matacos,Formosa,0
+Laishi,Formosa,0
+Ramon Lista,Formosa,0
+Patino,Formosa,0
+Pilcomayo,Formosa,0
+Bermejo,Formosa,0
+Dr. Manuel Belgrano,Jujuy,4
+Tilcara,Jujuy,1
+Palpala,Jujuy,0
+Valle Grande,Jujuy,0
+Yavi,Jujuy,0
+Santa Catalina,Jujuy,0
+El Carmen,Jujuy,0
+Humahuaca,Jujuy,0
+Tumbaya,Jujuy,0
+Cochinoca,Jujuy,0
+Susques,Jujuy,0
+San Antonio,Jujuy,0
+San Pedro,Jujuy,0
+Ledesma,Jujuy,0
+Santa Barbara,Jujuy,0
+Rinconada,Jujuy,0
+Curaco,La Pampa,0
+Catrilo,La Pampa,0
+Utracan,La Pampa,0
+Toay,La Pampa,0
+Rancul,La Pampa,0
+Hucal,La Pampa,0
+Conhelo,La Pampa,0
+Chapaleufu,La Pampa,0
+Loventue,La Pampa,0
+Realico,La Pampa,0
+Chical Co,La Pampa,0
+Atreuco,La Pampa,0
+Quemu Quemu,La Pampa,0
+Limay Mahuida,La Pampa,0
+Puelen,La Pampa,0
+Maraco,La Pampa,0
+Trenel,La Pampa,0
+Caleu Caleu,La Pampa,0
+Lihuel Calel,La Pampa,0
+Capital,La Pampa,0
+Guatrache,La Pampa,0
+Chalileo,La Pampa,0
+Chilecito,La Rioja,0
+General Belgrano,La Rioja,0
+General San Martin,La Rioja,0
+Rosario Vera Penaloza,La Rioja,0
+Angel Vicente Penaloza,La Rioja,0
+General Ortiz De Ocampo,La Rioja,0
+San Blas De Los Sauces,La Rioja,0
+Chamical,La Rioja,0
+Castro Barros,La Rioja,0
+Arauco,La Rioja,0
+General Juan Facundo Quiroga,La Rioja,0
+General Felipe Varela,La Rioja,0
+Vinchina,La Rioja,0
+Sanagasta,La Rioja,0
+Famatina,La Rioja,0
+Capital,La Rioja,0
+General Lamadrid,La Rioja,0
+Independencia,La Rioja,0
+Guaymallen,Mendoza,2
+Lujan De Cuyo,Mendoza,1
+Las Heras,Mendoza,0
+Tunuyan,Mendoza,0
+San Martin,Mendoza,0
+San Rafael,Mendoza,0
+Tupungato,Mendoza,0
+Godoy Cruz,Mendoza,0
+Malargue,Mendoza,0
+Rivadavia,Mendoza,0
+Capital,Mendoza,0
+Lavalle,Mendoza,0
+San Carlos,Mendoza,0
+Santa Rosa,Mendoza,0
+Maipu,Mendoza,0
+La Paz,Mendoza,0
+Junin,Mendoza,0
+General Alvear,Mendoza,0
+Capital,Misiones,2
+Obera,Misiones,1
+25 De Mayo,Misiones,0
+San Pedro,Misiones,0
+San Javier,Misiones,0
+Eldorado,Misiones,0
+Libertador General San Martin,Misiones,0
+Leandro N. Alem,Misiones,0
+Montecarlo,Misiones,0
+Cainguas,Misiones,0
+General Manuel Belgrano,Misiones,0
+Concepcion,Misiones,0
+Candelaria,Misiones,0
+San Ignacio,Misiones,0
+Apostoles,Misiones,0
+Iguazu,Misiones,0
+Guarani,Misiones,0
+Confluencia,Neuquén,4
+Zapala,Neuquén,1
+Alumine,Neuquén,0
+Chos Malal,Neuquén,0
+Anelo,Neuquén,0
+Loncopue,Neuquén,0
+Picunches,Neuquén,0
+Minas,Neuquén,0
+Picun Leufu,Neuquén,0
+Huiliches,Neuquén,0
+Norquin,Neuquén,0
+Lacar,Neuquén,0
+Collon Cura,Neuquén,0
+Catan Lil,Neuquén,0
+Los Lagos,Neuquén,0
+Pehuenches,Neuquén,0
+General Roca,Río Negro,3
+San Antonio,Río Negro,1
+Norquinco,Río Negro,0
+Conesa,Río Negro,0
+El Cuy,Río Negro,0
+Avellaneda,Río Negro,0
+25 De Mayo,Río Negro,0
+9 De Julio,Río Negro,0
+Adolfo Alsina,Río Negro,0
+Valcheta,Río Negro,0
+Pilcaniyeu,Río Negro,0
+Pichi Mahuida,Río Negro,0
+Bariloche,Río Negro,0
+Cafayate,Salta,1
+Capital,Salta,1
+Molinos,Salta,0
+Cachi,Salta,0
+San Carlos,Salta,0
+Guachipas,Salta,0
+Cerrillos,Salta,0
+Metan,Salta,0
+Iruya,Salta,0
+La Caldera,Salta,0
+Oran,Salta,0
+Chicoana,Salta,0
+La Candelaria,Salta,0
+La Poma,Salta,0
+General Jose De San Martin,Salta,0
+Anta,Salta,0
+La Vina,Salta,0
+Rosario De La Frontera,Salta,0
+Los Andes,Salta,0
+General Guemes,Salta,0
+Rivadavia,Salta,0
+Santa Victoria,Salta,0
+Rosario De Lerma,Salta,0
+Capital,San Juan,1
+Caucete,San Juan,0
+25 De Mayo,San Juan,0
+Jachal,San Juan,0
+Rivadavia,San Juan,0
+Valle Fertil,San Juan,0
+Zonda,San Juan,0
+San Martin,San Juan,0
+Santa Lucia,San Juan,0
+Pocito,San Juan,0
+Angaco,San Juan,0
+Rawson,San Juan,0
+Sarmiento,San Juan,0
+Albardon,San Juan,0
+9 De Julio,San Juan,0
+Calingasta,San Juan,0
+Chimbas,San Juan,0
+Iglesia,San Juan,0
+Ullum,San Juan,0
+Junin,San Luis,1
+General Pedernera,San Luis,0
+Chacabuco,San Luis,0
+Belgrano,San Luis,0
+Ayacucho,San Luis,0
+Juan Martin De Pueyrredon,San Luis,0
+Libertador General San Martin,San Luis,0
+Coronel Pringles,San Luis,0
+Gobernador Dupuy,San Luis,0
+Corpen Aike,Santa Cruz,0
+Deseado,Santa Cruz,0
+Lago Argentino,Santa Cruz,0
+Guer Aike,Santa Cruz,0
+Magallanes,Santa Cruz,0
+Rio Chico,Santa Cruz,0
+Lago Buenos Aires,Santa Cruz,0
+Rosario,Santa Fe,6
+La Capital,Santa Fe,5
+Castellanos,Santa Fe,3
+Las Colonias,Santa Fe,3
+San Lorenzo,Santa Fe,1
+Caseros,Santa Fe,1
+Santa Fe,Santa Fe,1
+San Cristobal,Santa Fe,1
+Vera,Santa Fe,1
+San Justo,Santa Fe,0
+Belgrano,Santa Fe,0
+Garay,Santa Fe,0
+San Jeronimo,Santa Fe,0
+Constitucion,Santa Fe,0
+San Martin,Santa Fe,0
+9 De Julio,Santa Fe,0
+Iriondo,Santa Fe,0
+General Lopez,Santa Fe,0
+General Obligado,Santa Fe,0
+San Javier,Santa Fe,0
+Banda,Santiago del Estero,1
+Capital,Santiago del Estero,1
+Ojo De Agua,Santiago del Estero,0
+Moreno,Santiago del Estero,0
+Pellegrini,Santiago del Estero,0
+Copo,Santiago del Estero,0
+Rio Hondo,Santiago del Estero,0
+Atamisqui,Santiago del Estero,0
+Alberdi,Santiago del Estero,0
+Guasayan,Santiago del Estero,0
+Figueroa,Santiago del Estero,0
+Mitre,Santiago del Estero,0
+Sarmiento,Santiago del Estero,0
+Jimenez,Santiago del Estero,0
+Aguirre,Santiago del Estero,0
+Juan Felipe Ibarra,Santiago del Estero,0
+Robles,Santiago del Estero,0
+Avellaneda,Santiago del Estero,0
+Quebrachos,Santiago del Estero,0
+Choya,Santiago del Estero,0
+San Martin,Santiago del Estero,0
+Belgrano,Santiago del Estero,0
+Rivadavia,Santiago del Estero,0
+Salavina,Santiago del Estero,0
+Loreto,Santiago del Estero,0
+General Taboada,Santiago del Estero,0
+Silipica,Santiago del Estero,0
+Ushuaia,"Tierra del Fuego, Antártida e Islas del Atlántico Sur",1
+Rio Grande,"Tierra del Fuego, Antártida e Islas del Atlántico Sur",1
+Tolhuin,"Tierra del Fuego, Antártida e Islas del Atlántico Sur",0
+Antartida Argentina,"Tierra del Fuego, Antártida e Islas del Atlántico Sur",0
+Lules,Tucumán,2
+Tafi Viejo,Tucumán,0
+Leales,Tucumán,0
+Tafi Del Valle,Tucumán,0
+Famailla,Tucumán,0
+Cruz Alta,Tucumán,0
+Capital,Tucumán,0
+Monteros,Tucumán,0
+Chicligasta,Tucumán,0
+Rio Chico,Tucumán,0
+Burruyacu,Tucumán,0
+Graneros,Tucumán,0
+Trancas,Tucumán,0
+Juan Bautista Alberdi,Tucumán,0
+Simoca,Tucumán,0
+La Cocha,Tucumán,0
+Yerba Buena,Tucumán,0
