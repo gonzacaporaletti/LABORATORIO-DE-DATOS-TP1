@@ -720,53 +720,54 @@ cc_por_provincia['Provincia'] = cc_por_provincia['Provincia'].replace({
 plt.figure(figsize=(10, 6))
 plt.rcParams.update({'font.size': 11})
 sns.barplot(data=cc_por_provincia, x='Cantidad_CC', y='Provincia', palette='viridis')
-plt.title('Cantidad de Centros Culturales por Provincia')
 plt.xlabel('Cantidad de Centros Culturales')
 plt.ylabel('Provincia')
 plt.show()
 
 
 #%%% EJERCICIO 2
-# Cambio el nombre de Tierra del Fuego, Antártida e Islas del Atlántico Sur para que los graficos sea más legible 
-Nivel_Ed_por_Prov['Provincia'] = Nivel_Ed_por_Prov['Provincia'].replace(
-    'Tierra del Fuego, Antártida e Islas del Atlántico Sur', 
-    'Tierra del Fuego'
+
+# Construyo un DataFrame "apilado" para el scatterplot.
+
+df_scatter_jardines = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Jardin'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Jardines'],
+    'Grupo_Etario': 'Jardines'
+})
+
+df_scatter_primarias = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Primaria'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Primarias'],
+    'Grupo_Etario': 'Primarias'
+})
+
+df_scatter_secundarios = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Secundaria'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Secundarios'],
+    'Grupo_Etario': 'Secundarios'
+})
+
+# Uno todo en un solo DataFrame
+df_scatter = pd.concat([df_scatter_jardines, 
+                        df_scatter_primarias, 
+                        df_scatter_secundarios],
+                       ignore_index=True)
+
+# Grafico el scatterplot
+plt.figure(figsize=(12, 8))
+plt.rcParams.update({'font.size':18})
+sns.scatterplot(
+    data=df_scatter,
+    x='Poblacion',
+    y='Cantidad_EE',
+    hue='Grupo_Etario',
+    palette='Set1'
 )
-# Elimino la ciudad autonoma de buenos aires ya que al estar representada con un único departamento no puede ser representada con un boxplot (esta información se encuentra disponible en la primera consulta de sql)
-df_filtrado = Nivel_Ed_por_Prov[Nivel_Ed_por_Prov['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
 
-# Calculo el total de las provincias y su orden para ponerlas de mayor a menos según cantidad de escuelas
-df_totales = df_filtrado.groupby('Provincia')[['Jardines', 'Primarias', 'Secundarios']].sum()
-df_totales['Total_EE'] = df_totales.sum(axis=1)
-order_provincias = df_totales.sort_values('Total_EE', ascending=False).index.tolist()
-
-# Transformo a formato largo para graficar
-df_long = df_filtrado.melt(
-    id_vars=['Provincia', 'Departamento'],
-    value_vars=['Jardines', 'Primarias', 'Secundarios'],
-    var_name='Grupo_Etario',
-    value_name='Cantidad_EE'
-)
-
-
-# Grafico los boxplot
-plt.figure(figsize=(35,10))
-plt.rcParams.update({'font.size': 25})
-sns.boxplot(
-    data=df_long, 
-    x='Provincia', 
-    y='Cantidad_EE', 
-    hue='Grupo_Etario', 
-    palette='Set2',
-    order=order_provincias
-)
-plt.xticks(rotation=90)
-plt.xlabel('Provincia')
-plt.ylabel('Cantidad de EE')
-plt.title('Distribución de Establecimientos Educativos por Provincia y Grupo Etario')
+plt.xlabel('Población por Nivel Educativo')
+plt.ylabel('Cantidad de Establecimientos Educativos')
 plt.legend(title='Grupo Etario')
 plt.show()
-
 
 #%%% EJERCICIO 3
 
@@ -794,11 +795,11 @@ orden_provincias = medianas.index.tolist()
 
 # grafico
 plt.figure(figsize=(20,12))
+plt.rcParams.update({'font.size':18})
 sns.boxplot(x="Provincia", y="Cantidad_de_EE", data=df_filtrado2, order=orden_provincias, palette="viridis")
 plt.xticks(rotation=90)
 plt.xlabel("Provincia")
 plt.ylabel("Cantidad de EE por Departamento")
-plt.title("Distribución de EE por Departamento en cada Provincia")
 plt.show()
 
 
