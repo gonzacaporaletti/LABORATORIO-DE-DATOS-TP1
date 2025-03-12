@@ -806,7 +806,67 @@ plt.ylabel("Cantidad de EE por Departamento")
 plt.show()
 
 
-#%% EJERCICIO 4 
+#%% EJERCICIO 4 : Scatter de Cantidad de CC cada 1000 habs en función de cantidad de EE cada 1000 habs
+
+'''Se definen 3 clases con el fin de separar en grupos de estudio:
+# CABA,
+# Departamento de la Provincia de Buenos Aires,
+# Departamento de otra provincia en general'''
+
+# Se conservan del dataframe aquellos cuya provincia sea CABA
+caba = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Ciudad Autónoma de Buenos Aires']
+# Se conservan del dataframe aquellos cuya provincia sea Buenos Aires
+buenos_aires = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Buenos Aires']
+# Se conservan del dataframe aquellos cuya provincia no sea CABA ...
+otras_provincias = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
+# ... Ni Buenos Aires
+otras_provincias = otras_provincias[otras_provincias['Provincia'] != 'Buenos Aires']
+
+# Se crean listas para almacenar los datos de los ejes x e y,
+# para las tres clases
+x_caba, y_caba = [], []
+x_buenos_aires, y_buenos_aires = [], []
+x_otras_provincias, y_otras_provincias = [], []
+
+# Se recorren los departamentos de cada clase
+# y se agregan los valores de 'Estab_x_mil' y 'CC_x_mil'
+for idx, row in caba.iterrows():
+    x_caba.append(row['Estab_x_mil'])
+    y_caba.append(row['CC_x_mil'])
+
+for idx, row in buenos_aires.iterrows():
+    x_buenos_aires.append(row['Estab_x_mil'])
+    y_buenos_aires.append(row['CC_x_mil'])
+
+for idx, row in otras_provincias.iterrows():
+    x_otras_provincias.append(row['Estab_x_mil'])
+    y_otras_provincias.append(row['CC_x_mil'])
+
+# Se crea el Scatter
+plt.figure(figsize=(12, 9))
+
+# Se grafica cada clase con diferentes colores y formas
+# Se aumenta el tamaño del ítem que corresponde a CABA
+plt.scatter(x_caba, y_caba, color='green', label='CABA', alpha=1, marker='o', s=300)
+# Se baja la opacidad de los departamentos de Buenos Aires y de otras provincias
+plt.scatter(x_buenos_aires, y_buenos_aires, color='blue', label='Departamentos de Buenos Aires', alpha=0.6, marker='^',s=70)
+plt.scatter(x_otras_provincias, y_otras_provincias, color='red', label='Departamentos de otras provincias', alpha=0.6, marker='s', s=70)
+
+
+# Se añaden las etiquetas y título
+plt.xlabel('EE cada mil habs.')
+plt.ylabel('CC cada mil habs.')
+
+# Se añade la leyenda que especifica la clave para cada dato
+plt.legend(loc='upper right', fontsize=15, title='Categorías')
+plt.grid(False)
+
+
+# Se presenta el gráfico
+plt.show()
+
+
+#%% VERSION VIEJA 4. PINTA PONERLA IGUAL O NO?
 
 # 1. Población por provincia
 pop_depto = Reporte_Demografico.groupby("ID_DEPTO")["Poblacion"].sum().reset_index()                            # Sumo la población por departamento 
