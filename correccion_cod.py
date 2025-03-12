@@ -130,6 +130,17 @@ ee["Departamento"] = ee["Departamento"].apply(reemplazar_si_empieza)
 ee = ee.replace(' ', np.nan)  # Convierte espacios en blanco en NaN
 ee = ee.replace('', np.nan)  # Convierte strings vacíos en NaN
 
+#me fijo la cantidad de nans en la columna de nivel educativo de modalidad común
+# Lista de columnas que quieres analizar
+columnas = ['Nivel inicial - Jardín maternal', 'Nivel inicial - Jardín de infantes', 'Primario', 'Secundario', 'Secundario - INET', 'SNU', 'SNU - INET']
+
+cantidad_total_celdas = ee[columnas].size
+cantidad_total_nans = ee[columnas].isna().sum().sum()
+
+proporcion_nans = cantidad_total_nans / cantidad_total_celdas
+
+print(f"La proporción de celdas vacías es: {proporcion_nans:.2%}")
+
 # Reemplazo NaNs por 0
 ee = ee.fillna(0)  # Rellena NaN con s/d
 
