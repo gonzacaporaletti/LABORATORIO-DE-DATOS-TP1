@@ -536,6 +536,7 @@ consultaSQL= ''' SELECT
 
 df_cambio_cap=dd.sql(consultaSQL).df()
 
+#ahora agrego los departamentos que no están en la tabla de centros culturales
 
 consultaSQL='''
                 SELECT d.Departamento,
@@ -546,44 +547,48 @@ consultaSQL='''
                 RIGHT OUTER JOIN
                 Departamentos AS d
                 ON d.ID_DEPTO = cc.ID_DEPTO
-                GROUP BY d.ID_DEPTO, d.ID_PROV
 '''
 
 depto_CC_100 = dd.sql(consultaSQL).df()
 
+#cambio los None a 0 en capacidad
 
+consultaSQL= ''' SELECT 
+                 Departamento,
+                 ID_DEPTO,
+                 ID_PROV,
+                 CASE WHEN Capacidad IS NULL 
+                 THEN '0' ELSE Capacidad END AS Capacidad
+                 FROM depto_CC_100 '''
+
+df_cambio_cap=dd.sql(consultaSQL).df()
+
+#agrego la provincia
+
+consultaSQL= '''
+                SELECT 
+                p.Provincia,
+                cc.Departamento,
+                cc.Capacidad
+                FROM df_cambio_cap AS cc
+                LEFT OUTER JOIN Provincias AS p
+                ON cc.ID_PROV = p.ID_PROV
+'''
+depto_CC_100 = dd.sql(consultaSQL).df()
 
 consultaSQL = ''' 
                  SELECT  
-                 ID_PROV,
+                 Provincia,
                  Departamento,
                  COUNT(CASE WHEN CAST(Capacidad AS INTEGER) > 100 THEN Capacidad ELSE Null END) AS "Cantidad de CC con cap>100"       --- se uitiliza CAST(Capacidad AS INTEGER) porque algunos de los registros de capacidad no son int y debemos hacerlos int, sería como usar un .astype(int)
                  FROM 
-                 df_cambio_cap
-                 GROUP BY Departamento, ID_PROV
+                 depto_CC_100
+                 GROUP BY Departamento, Provincia
+                 ORDER BY provincia ASC, "Cantidad de CC con cap>100" DESC
                  '''
 depto_CC_100 = dd.sql(consultaSQL).df()
 
-#ahora agrego los departamentos que no están en la tabla de centros culturales
 
-
-consultaSQL= '''
-                SELECT 
-                d.Departamento,
-                d.ID_PROV
-                FROM Departamentos AS d
-                EXCEPT
-                SELECT 
-                cc.Departamento,
-                cc.ID_PROV
-                FROM depto_CC_100 AS cc
-'''
-
-df_todos_los_deptos=dd.sql(consultaSQL).df()
-
-consultaSQL= '''
-                SELECT
-'''
 #%%
 depto_CC_100.to_csv('depto_CC_100.csv', index=False)
 
