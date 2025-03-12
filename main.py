@@ -868,19 +868,19 @@ plt.show()
 # CABA,
 # Departamento de la Provincia de Buenos Aires,
 # Departamento de otra provincia en general'''
-# %%
+
 # Se conservan del dataframe aquellos cuya provincia sea CABA
 caba = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Ciudad Autónoma de Buenos Aires'].copy()
 caba['Cantidad EE'] = (caba['Cantidad EE'] / caba['Población Total']) * 1000
 caba['Cantidad CC'] = (caba['Cantidad CC'] / caba['Población Total']) * 1000
 
-# %%
+
 # Se conservan del dataframe aquellos cuya provincia sea Buenos Aires
 buenos_aires = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Buenos Aires'].copy()
 buenos_aires['Cantidad EE'] = (buenos_aires['Cantidad EE'] / buenos_aires['Población Total']) * 1000
 buenos_aires['Cantidad CC'] = (buenos_aires['Cantidad CC'] / buenos_aires['Población Total']) * 1000
 
-# %%
+
 # Se conservan del dataframe aquellos cuya provincia no sea CABA ni Buenos Aires
 # Se conservan del dataframe aquellos cuya provincia no sea CABA ...
 otras_provincias = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
@@ -889,7 +889,7 @@ otras_provincias = otras_provincias[otras_provincias['Provincia'] != 'Buenos Air
 otras_provincias = otras_provincias.copy()
 otras_provincias['Cantidad EE'] = (otras_provincias['Cantidad EE'] / otras_provincias['Población Total']) * 1000
 otras_provincias['Cantidad CC'] = (otras_provincias['Cantidad CC'] / otras_provincias['Población Total']) * 1000
-# %%
+
 # Se crean listas para almacenar los datos de los ejes x e y,
 # para las tres clases
 x_caba, y_caba = [], []
