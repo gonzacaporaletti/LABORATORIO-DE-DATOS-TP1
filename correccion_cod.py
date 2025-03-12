@@ -588,6 +588,21 @@ consultaSQL = """
 
               """
 Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
+
+#ahora selecciono solo que necesito
+
+consultaSQL=''' 
+                SELECT 
+                Provincia,
+                Departamento,
+                Cantidad_EE AS "Cantidad EE",
+                Cantidad_CC AS "Cantidad CC",
+                Poblacion_Total AS "Población Total"
+                FROM Cant_CC_EE_Pob
+                '''
+Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
+
+#%%
 Cant_CC_EE_Pob.to_csv('Cant_CC_EE_Pob.csv', index=False)
 
 
@@ -598,44 +613,90 @@ Cant_CC_EE_Pob.to_csv('Cant_CC_EE_Pob.csv', index=False)
 ### entonces si hay un depto que ninguno de sus centros tiene mail, no va a
 ### ser considerado para esta tabla
 
-consulta_dominios = """
-       WITH conteo_dominios AS (
-           SELECT 
-               d.ID_DEPTO,
-               p.Provincia,
-               d.Departamento,
-               LOWER(SPLIT_PART(SPLIT_PART(m.Mail, '@', 2), '.', 1)) AS dominio,  ---indico cual es el dominio
-               COUNT(DISTINCT cc.ID_CC) AS cnt
-           FROM Departamentos d
-           JOIN Provincias p ON d.ID_PROV = p.ID_PROV
-           JOIN Centros_C cc ON d.ID_DEPTO = cc.ID_DEPTO
-           JOIN Mails m ON cc.ID_CC = m.ID_CC
-           WHERE m.Mail IS NOT NULL
-           AND m.Mail <> ''                                              ---se excluyen registros que tengan cadenas vacías
-           GROUP BY d.ID_DEPTO, p.Provincia, d.Departamento, dominio
-           ),
-       max_counts AS (
-           SELECT 
-               ID_DEPTO,
-               MAX(cnt) AS max_cnt
-           FROM conteo_dominios
-           GROUP BY ID_DEPTO
-           )
-       SELECT 
-           dc.Provincia,
-           dc.Departamento,
-           dc.dominio AS Dominio_mas_frecuente
-       FROM conteo_dominios dc
-       JOIN max_counts mc
-       ON dc.ID_DEPTO = mc.ID_DEPTO AND dc.cnt = mc.max_cnt
-       ORDER BY dc.Provincia ASC, dc.Departamento ASC
+# Paso 1: Uno Departamentos y Provincias
+consulta_dp = """
+        SELECT 
+         d.ID_DEPTO,
+         p.Provincia,
+         d.Departamento
+         FROM Departamentos AS d
+         JOIN Provincias AS p ON d.ID_PROV = p.ID_PROV
 """
+tabla_dp = dd.sql(consulta_dp).df()
 
-dominios_cc = dd.sql(consulta_dominios).df()
+
+# Paso 2: Un0 Centros_C y Mails para extraer el dominio
+consulta_cm = """
+         SELECT 
+         cc.ID_DEPTO,
+         LOWER(SPLIT_PART(SPLIT_PART(m.Mail, '@', 2), '.', 1)) AS dominio,
+         cc.ID_CC
+         FROM Centros_C AS cc
+         JOIN Mails AS m ON cc.ID_CC = m.ID_CC
+         WHERE m.Mail IS NOT NULL 
+         AND m.Mail <> ''
+"""
+tabla_cm = dd.sql(consulta_cm).df()
+
+
+# Paso 3: Calculo el conteo de dominios por departamento
+consulta_conteo = """
+         SELECT 
+         ID_DEPTO,
+         dominio,
+         COUNT(DISTINCT ID_CC) AS cnt
+         FROM tabla_cm
+         GROUP BY ID_DEPTO, dominio
+"""
+conteo_dominios = dd.sql(consulta_conteo).df()
+
+
+# Paso 4: Obtengo el máximo conteo por departamento
+consulta_max = """
+         SELECT 
+         ID_DEPTO,
+         MAX(cnt) AS max_cnt
+         FROM conteo_dominios
+         GROUP BY ID_DEPTO
+"""
+tabla_max = dd.sql(consulta_max).df()
+
+
+# Paso 5: Filtro el/los dominio(s) con mayor frecuencia
+consulta_max_dominio = """
+         SELECT 
+         cd.ID_DEPTO,
+         cd.dominio,
+         cd.cnt
+         FROM conteo_dominios AS cd
+         JOIN tabla_max AS tm ON cd.ID_DEPTO = tm.ID_DEPTO 
+         AND cd.cnt = tm.max_cnt
+"""
+tabla_max_dominio = dd.sql(consulta_max_dominio).df()
+
+
+# Paso 6: Uno con la información de Departamentos y Provincias para la tabla final
+consulta_final = """
+         SELECT 
+         dp.Provincia,
+         dp.Departamento,
+         tmd.dominio AS Dominio_mas_frecuente
+         FROM tabla_max_dominio AS tmd
+         JOIN tabla_dp AS dp ON tmd.ID_DEPTO = dp.ID_DEPTO
+         ORDER BY dp.Provincia ASC, dp.Departamento ASC
+"""
+dominios_cc = dd.sql(consulta_final).df()
+
+
+#%%
 dominios_cc.to_csv('dominios_cc.csv', index=False)
 
-
-
+#%%
+dominio_max = dominios_cc['Dominio_mas_frecuente'].value_counts().idxmax()
+apariciones_dom_max = dominios_cc['Dominio_mas_frecuente'].value_counts().max()
+porcentaje = (apariciones_dom_max / len(dominios_cc)) * 100
+ 
+print(f'El dominio que más aparece es {dominio_max} con {apariciones_dom_max} apariciones, esto es el {porcentaje:.2f}% del total')
 #%% VIZUALIZACIÓN DE DATOS
 #%%% EJERCICIO 1
 
