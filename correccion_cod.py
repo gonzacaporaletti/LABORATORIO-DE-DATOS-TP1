@@ -761,11 +761,14 @@ sns.scatterplot(
     x='Poblacion',
     y='Cantidad_EE',
     hue='Grupo_Etario',
+    alpha=0.6,
     palette='Set1'
 )
 
 plt.xlabel('Población por Nivel Educativo')
 plt.ylabel('Cantidad de Establecimientos Educativos')
+plt.xlim(0, 90000)
+plt.ylim(0, 400)
 plt.legend(title='Grupo Etario')
 plt.show()
 
