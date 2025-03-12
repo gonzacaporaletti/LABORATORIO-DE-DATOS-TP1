@@ -754,7 +754,7 @@ apariciones_dom_max = dominios_cc['Dominio_mas_frecuente'].value_counts().max()
 porcentaje = (apariciones_dom_max / len(dominios_cc)) * 100
  
 print(f'El dominio que más aparece es {dominio_max} con {apariciones_dom_max} apariciones, esto es el {porcentaje:.2f}% del total')
-#%% VIZUALIZACIÓN DE DATOS
+#%% VISUALIZACIÓN DE DATOS
 #%%% EJERCICIO 1
 
 #cant de CC por provincia
@@ -864,21 +864,32 @@ plt.show()
 
 
 #%% EJERCICIO 4 : Scatter de Cantidad de CC cada 1000 habs en función de cantidad de EE cada 1000 habs
-
 '''Se definen 3 clases con el fin de separar en grupos de estudio:
 # CABA,
 # Departamento de la Provincia de Buenos Aires,
 # Departamento de otra provincia en general'''
-
+# %%
 # Se conservan del dataframe aquellos cuya provincia sea CABA
-caba = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Ciudad Autónoma de Buenos Aires']
+caba = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Ciudad Autónoma de Buenos Aires'].copy()
+caba['Cantidad EE'] = (caba['Cantidad EE'] / caba['Población Total']) * 1000
+caba['Cantidad CC'] = (caba['Cantidad CC'] / caba['Población Total']) * 1000
+
+# %%
 # Se conservan del dataframe aquellos cuya provincia sea Buenos Aires
-buenos_aires = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Buenos Aires']
+buenos_aires = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Buenos Aires'].copy()
+buenos_aires['Cantidad EE'] = (buenos_aires['Cantidad EE'] / buenos_aires['Población Total']) * 1000
+buenos_aires['Cantidad CC'] = (buenos_aires['Cantidad CC'] / buenos_aires['Población Total']) * 1000
+
+# %%
+# Se conservan del dataframe aquellos cuya provincia no sea CABA ni Buenos Aires
 # Se conservan del dataframe aquellos cuya provincia no sea CABA ...
 otras_provincias = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
 # ... Ni Buenos Aires
 otras_provincias = otras_provincias[otras_provincias['Provincia'] != 'Buenos Aires']
-
+otras_provincias = otras_provincias.copy()
+otras_provincias['Cantidad EE'] = (otras_provincias['Cantidad EE'] / otras_provincias['Población Total']) * 1000
+otras_provincias['Cantidad CC'] = (otras_provincias['Cantidad CC'] / otras_provincias['Población Total']) * 1000
+# %%
 # Se crean listas para almacenar los datos de los ejes x e y,
 # para las tres clases
 x_caba, y_caba = [], []
@@ -888,19 +899,19 @@ x_otras_provincias, y_otras_provincias = [], []
 # Se recorren los departamentos de cada clase
 # y se agregan los valores de 'Estab_x_mil' y 'CC_x_mil'
 for idx, row in caba.iterrows():
-    x_caba.append(row['Estab_x_mil'])
-    y_caba.append(row['CC_x_mil'])
+    x_caba.append(row['Cantidad EE'])
+    y_caba.append(row['Cantidad CC'])
 
 for idx, row in buenos_aires.iterrows():
-    x_buenos_aires.append(row['Estab_x_mil'])
-    y_buenos_aires.append(row['CC_x_mil'])
+    x_buenos_aires.append(row['Cantidad EE'])
+    y_buenos_aires.append(row['Cantidad CC'])
 
 for idx, row in otras_provincias.iterrows():
-    x_otras_provincias.append(row['Estab_x_mil'])
-    y_otras_provincias.append(row['CC_x_mil'])
+    x_otras_provincias.append(row['Cantidad EE'])
+    y_otras_provincias.append(row['Cantidad CC'])
 
 # Se crea el Scatter
-plt.figure(figsize=(12, 9))
+plt.figure(figsize=(15, 10))
 
 # Se grafica cada clase con diferentes colores y formas
 # Se aumenta el tamaño del ítem que corresponde a CABA
@@ -921,5 +932,4 @@ plt.grid(False)
 
 # Se presenta el gráfico
 plt.show()
-
 
