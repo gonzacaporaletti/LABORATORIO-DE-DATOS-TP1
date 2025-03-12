@@ -20,11 +20,11 @@ import seaborn as sns
 
 #%% FUNCIONES
 
-def reemplazar_si_empieza(texto):  # Cambia los nombres de 'Comuna X' a 'ciudad autonoma de buenos aires'
-    if isinstance(texto, str):  # Verifica que es un string
+def reemplazar_si_empieza(texto):                      # Cambia los nombres de 'Comuna X' a 'ciudad autonoma de buenos aires'
+    if isinstance(texto, str):                         # Verifica que es un string
         if texto.startswith("comuna"):
-            return "ciudad autonoma de buenos aires"  # Nuevo valor
-    return texto  # Deja el valor original si no coincide
+            return "ciudad autonoma de buenos aires"   # Nuevo valor
+    return texto                                       # Deja el valor original si no coincide
 
 
 def quitar_tildes(texto):  # Saca las tildes y convierte a minúsculas
@@ -58,46 +58,41 @@ CC.rename(columns={'Mail ': 'Mail'}, inplace=True)  # Elimino el espacio en el n
 
 '---------------------------------corrijo celdas desplazadas--------------------------------------------'
 
-conn = dd.connect(database='CC.duckdb', read_only=False)  # Creo un archivo de la base de datos para usarlo como base en duckdb
-conn.execute("DROP TABLE IF EXISTS CC")  # Eliminar la tabla CC si existe (para evitar conflictos si se ejecuta más de una vez)
-conn.execute("CREATE TABLE CC AS SELECT * FROM CC")  # Creo la tabla base CC a partir del DataFrame en el archivo
+# Creo un diccionario con las columnas a actualizar y sus nuevos valores
+cambios = {
+    'Domicilio': 'Falucho 1418',
+    'Piso': '',
+    'CP': '',
+    'cod_area': '11',
+    'Telefóno': '44400547',
+    'Mail': 'Ignaciodevedia@gmail.com',
+    'Web': '',
+    'InfoAdicional': '',
+    'Latitud': '-34.38956050',
+    'Longitud': '-58.73757020',
+    'TipoLatitudLongitud': 'Precisa',
+    'Fuente': 'Puntos de Cultura 2020',
+    'año_inicio': '',
+    'Capacidad': '',
+    'Actualizacion': '2020'
+}
 
-consultaSQL = """
-                    UPDATE CC
-                    SET 
-                    Domicilio = 'Falucho 1418',
-                    Piso = '',              
-                    CP = '',  
-                    cod_area = '11',
-                    Telefóno = '44400547',
-                    Mail = 'Ignaciodevedia@gmail.com',
-                    Web = '',               
-                    InfoAdicional = '',
-                    Latitud = '-34.38956050',
-                    Longitud = '-58.73757020',
-                    TipoLatitudLongitud = 'Precisa',
-                    Fuente = 'Puntos de Cultura 2020',           
-                    año_inicio = '',
-                    Capacidad = '',      
-                    Actualizacion = '2020'     
-                    WHERE Nombre = 'Casa Popular Marielle Franco';
-"""
-conn.execute(consultaSQL)
+# Aplico la actualización solo para 'Casa Popular Marielle Franco'
+mask = CC['Nombre'] == 'Casa Popular Marielle Franco'
+CC.loc[mask, list(cambios.keys())] = list(cambios.values())
 
-consultaSQL = """
-                    UPDATE CC
-                    SET 
-                    Latitud = '-45.81641540',
-                    Longitud = '-67.45550320',
-                    TipoLatitudLongitud = 'Precisa',
-                    Fuente = 'Puntos de Cultura 2020',           
-                    Capacidad = 0 ,      
-                    Actualizacion = '2020'     
-                    WHERE Nombre = 'Espacio Cultural "Kultural 5"';
-"""
-conn.execute(consultaSQL)
+# repito el proceso para la siguiente fila desplazada
+cambios = {
+    'Latitud': '-45.81641540',
+    'Longitud': '-67.45550320',
+    'TipoLatitudLongitud': 'Precisa',
+    'Fuente': 'Puntos de Cultura 2020',
+    'Capacidad': 0,
+    'Actualizacion': '2020'
+}
 
-CC = conn.execute("SELECT * FROM CC").df()
+mask = CC['Nombre'] == 'Espacio Cultural "Kultural 5"'
+CC.loc[mask, list(cambios.keys())] = list(cambios.values())
 
 # Elimino las columnas que no usaremos y Paso Departamento a Minúscula
 consultaSQL = '''SELECT ID_CC, 
@@ -134,6 +129,17 @@ ee["Departamento"] = ee["Departamento"].apply(reemplazar_si_empieza)
 # Reemplazo lugares vacíos por NaN
 ee = ee.replace(' ', np.nan)  # Convierte espacios en blanco en NaN
 ee = ee.replace('', np.nan)  # Convierte strings vacíos en NaN
+
+#me fijo la cantidad de nans en la columna de nivel educativo de modalidad común
+# Lista de columnas que quieres analizar
+columnas = ['Nivel inicial - Jardín maternal', 'Nivel inicial - Jardín de infantes', 'Primario', 'Secundario', 'Secundario - INET', 'SNU', 'SNU - INET']
+
+cantidad_total_celdas = ee[columnas].size
+cantidad_total_nans = ee[columnas].isna().sum().sum()
+
+proporcion_nans = cantidad_total_nans / cantidad_total_celdas
+
+print(f"La proporción de celdas vacías es: {proporcion_nans:.2%}")
 
 # Reemplazo NaNs por 0
 ee = ee.fillna(0)  # Rellena NaN con s/d
@@ -175,7 +181,7 @@ ee = ee[columnas_necesarias]
 
 # %% BASE de DATOS: Población
 
-# Renombrar columnas
+# Renombro las columnas
 pp = pp.rename(
     columns={
         "Unnamed: 0": "descartar",
@@ -186,66 +192,64 @@ pp = pp.rename(
     }
 )
 
-# Eliminar filas completamente vacías
+# Elimino las filas completamente vacías
 pp = pp.dropna(how="all")
 
-# Quitar filas que tengan 'Total' en 'Edad'
+# saco las filas que tengan 'Total' en 'Edad'
 pp = pp[pp['Edad'] != 'Total']
 
-# Crear columnas "Área" y "Comuna" para detectar "AREA #..."
+# Creo las columnas "Área" y "Comuna" para detectar "AREA #..."
 pp["Área"] = None
 pp["Comuna"] = None
 
 area_actual = None
 comuna_actual = None
 
-# Iterar sobre las filas para detectar "AREA #..." y asociarlas
+# Itero sobre las filas para detectar "AREA #..." y asociarlas
 for i, row in pp.iterrows():
     valor_edad = row["Edad"]
     if isinstance(valor_edad, str) and "AREA #" in valor_edad:
         area_actual = valor_edad
         comuna_actual = row["Poblacion"]
         # Se anula la columna "Edad" en esa fila (era un encabezado)
-        pp.at[i, "Edad"] = None
+        pp.loc[i, "Edad"] = None
     
-    pp.at[i, "Área"]   = area_actual
-    pp.at[i, "Comuna"] = comuna_actual
+    pp.loc[i, "Área"]   = area_actual
+    pp.loc[i, "Comuna"] = comuna_actual
 
-# Extraer codigo_provincia y codigo_depto de la cadena “AREA #...”
-pp['codigo_provincia'] = pp['Área'].str[7:9]  # p.ej. "02"
-pp['codigo_depto']     = pp['Área'].str[9:]   # p.ej. "007"
+# Extraigo codigo_provincia y codigo_depto de la cadena “AREA #...”
+pp['codigo_provincia'] = pp['Área'].str[7:9]
+pp['codigo_depto']     = pp['Área'].str[9:]
 
 
-# Eliminar filas a partir de la palabra 'RESUMEN'
+# Elimino todas las filas del 'RESUMEN'
 indice_resumen = pp[pp["Edad"] == "RESUMEN"].index
-if not indice_resumen.empty:
-    primer_resumen = indice_resumen.min()
-    pp = pp.loc[:primer_resumen - 1]
+pp = pp.loc[:indice_resumen[0] - 1]
 
-# Eliminar filas que tengan NaN en la columna '%'
+# Elimino las filas que tengan NaN en la columna '%'
 pp = pp.dropna(subset=["%"])
 
-# Eliminar filas que todavía tengan 'Edad' en la columna Edad (eran encabezados)
+# Elimino las filas que todavía tengan 'Edad' en la columna Edad (son encabezados)
 pp = pp[pp['Edad'] != 'Edad']
 
-# Eliminar la columna 'descartar' si existe
-pp = pp.drop(columns=['descartar'], errors='ignore')
+# Elimino la columna 'descartar'
+pp = pp.drop(columns=['descartar'])
 
 # Unificar comunas de CABA
 pp["Comuna"] = pp["Comuna"].astype(str)
 pp["Comuna"] = np.where(
-    pp["Comuna"].str.startswith("Comuna"), 
-    "ciudad autonoma de buenos aires", 
-    pp["Comuna"]
+    pp["Comuna"].str.startswith("Comuna"),   #devuelve una Serie booleana en la que cada elemento es True si el contenido de esa celda comienza con la cadena "Comuna" y False en caso contrario.
+    "ciudad autonoma de buenos aires",       #valor que se asignará cuando la condición sea True.
+    pp["Comuna"]                             #si no se cumple la condición se mantiene el valor original
 )
 pp.rename(columns={"Comuna": "Departamento"}, inplace=True)
 
-# Agrupar filas de CABA (provincia "02") en un solo Departamento
+# Agrupo las filas de CABA en un solo Departamento
 mascara_caba = (pp["codigo_provincia"] == "02")
 pp_caba = (
     pp[mascara_caba]
     .groupby("Edad", as_index=False)
-    .agg({
+    .agg({                             #agg agarra todos los valores distintos de edad y suma los valores de las columnas especificadas
         "Poblacion": "sum",
         "%": "sum",
         "Acumulado %": "sum"
@@ -255,39 +259,39 @@ pp_caba = (
 pp_caba["codigo_provincia"] = "02"
 pp_caba["codigo_depto"]     = "000"
 pp_caba["Departamento"]     = "ciudad autonoma de buenos aires"
+pp_caba["Área"]             = "AREA # 02000"
 
 
-pp_caba["Área"] = "AREA # 02000"
-
-
-pp_sin_caba = pp[~mascara_caba]
-pp = pd.concat([pp_caba, pp_sin_caba], ignore_index=True)
+pp_sin_caba = pp[~mascara_caba]                            #el ~ invierte la condición, es decir nos devuelve todas los registros que no corresponden a caba
+pp = pd.concat([pp_caba, pp_sin_caba], ignore_index=True)  #agrupo ambos df
 
 pp["Departamento"] = pp["Departamento"].apply(quitar_tildes)
 
+#%% CREACIÓN DE LA ENTIDAD DEPARTAMENTOS Y PROVINCIAS
 
-
-consultaSQL = "SELECT DISTINCT ID_PROV, Provincia FROM CC ORDER BY ID_PROV"
+#tabla Provincias
+consultaSQL = '''SELECT DISTINCT ID_PROV, Provincia 
+                 FROM CC 
+                 ORDER BY ID_PROV'''
+                
 Provincias = dd.sql(consultaSQL).df()
-Provincias['ID_PROV'] = Provincias['ID_PROV'].astype(int)
+Provincias['ID_PROV'] = Provincias['ID_PROV'].astype(int) #me aseguro de que todos sean int para evitar erroes
 
-#construyo las tablas departamentos
-consultaSQL = '''
-SELECT DISTINCT 
-    Área,
-    codigo_provincia,
-    codigo_depto,
-    Departamento
-FROM pp
-ORDER BY Departamento
-'''
+#tabla Departamentos
+consultaSQL = '''SELECT DISTINCT 
+                 Área,
+                 codigo_provincia,
+                 codigo_depto,
+                 Departamento
+                 FROM pp
+                 ORDER BY Departamento'''
 Departamentos = dd.sql(consultaSQL).df()
 
-# Agregar departamentos faltantes ya con la provincia asignada
+# Agrego departamentos faltantes ya con la provincia asignada
 nuevos_departamentos = pd.DataFrame({
-    "Área": [None, None, None, None, None],  # Si no tienen Área real, van como None
-    "codigo_provincia": [6, 6, 6, 82, 94],   # Códigos de provincia correctos
-    "codigo_depto": [np.nan, np.nan, np.nan, np.nan, np.nan],
+    "Área": [None, None, None, None, None],                      # lo agrego sin area porque despues se elimina la columna
+    "codigo_provincia": [6, 6, 6, 82, 94],                       # Códigos de provincia correctos
+    "codigo_depto": [np.nan, np.nan, np.nan, np.nan, np.nan],    # lo agrego sin código depto porque despues redefino el índice
     "Departamento": [
         "pigue", 
         "veronica", 
@@ -300,50 +304,42 @@ nuevos_departamentos = pd.DataFrame({
 Departamentos = pd.concat([Departamentos, nuevos_departamentos], ignore_index=True)
 
 
-#  Eliminar la columna 'ID_DEPTO' si existe, para reindexar
+#  Elimino la columna 'ID_DEPTO', para reindexar
 Departamentos.drop(columns=['ID_DEPTO'], inplace=True, errors='ignore')
 
-# Asignar un ID_DEPTO consecutivo
+# Asigno un ID_DEPTO consecutivo
 Departamentos['ID_DEPTO'] = range(1, len(Departamentos) + 1)
 
-#  Convertir codigo_provincia a entero
+#  Convierto codigo_provincia a int 
 Departamentos['codigo_provincia'] = (
-    Departamentos['codigo_provincia'].fillna(-1).astype(int)
+    Departamentos['codigo_provincia'].astype(int)
 )
 
-# ordenar
+# Ordeno la tabla por "ID_DEPTO"
 Departamentos = Departamentos.sort_values("ID_DEPTO")
 
 
-#  Para que CABA aparezca, verifica que su fila ahora existe
-#         con Área = None, codigo_provincia=2, codigo_depto=000, etc.
-#         Asignar la misma clave en 'pp'
-
-#  Construir un diccionario { Área : ID_DEPTO }
+#  Construyo un diccionario { Área : ID_DEPTO } para poder asignar el id depto correcto a pp
 dict_area_to_id = dict(zip(Departamentos['Área'], Departamentos['ID_DEPTO']))
 
 
-pp['ID_DEPTO'] = pp['Área'].map(dict_area_to_id)
+pp['ID_DEPTO'] = pp['Área'].map(dict_area_to_id) #map toma cada valor de la columna 'Área' de pp y lo busca como clave en el diccionario dict_area_to_id, de esta forma se cambia el id depto de pp por el que tiene Departamentos
 
 
-#  Dejar la tabla "Departamentos" SÓLO con ID_DEPTO, Departamento e ID_PROV
+# Limpio la tabla Departamentos (me quedo con las columnas que me interesan)
 
 Departamentos['ID_PROV'] = Departamentos['codigo_provincia']
 Departamentos.drop(columns=['codigo_provincia','codigo_depto','Área'], inplace=True, errors='ignore')
 
-# Reordenar columnas
+# Reordeno las columnas
 Departamentos = Departamentos[['ID_DEPTO','Departamento','ID_PROV']]
 
 
-#Crear df_final agrupando (Edad, ID_DEPTO) en pp, si lo deseas
-
-df_final = (
+#Creo df_final agrupando (Edad, ID_DEPTO) en pp
+pp = (
     pp.groupby(["Edad", "ID_DEPTO"], as_index=False)
       .agg({"Poblacion": "sum"})
 )
-
-print("Departamentos (final):\n", Departamentos.head(20))
-print("df_final (poblacion):\n", df_final.head(20))
 
 
 #%%
@@ -351,13 +347,13 @@ CC['ID_DEPTO'] = CC['ID_DEPTO'].astype(int)
 Departamentos['ID_DEPTO'] = Departamentos['ID_DEPTO'].astype(int) 
 
 CC['ID_PROV'] = CC['ID_PROV'].astype(int)
-Departamentos['ID_PROV'] = Departamentos['ID_PROV'].astype(int)                # Convertir a int las columnas
+Departamentos['ID_PROV'] = Departamentos['ID_PROV'].astype(int)                # Convierto a int las columnas
 
-CC.drop(columns=['ID_DEPTO'], inplace=True)                                    # Eliminar la antigua columna de ID_DEPTO
-CC = CC.merge(Departamentos, on=['Departamento', 'ID_PROV'], how='left')       # Asignar el ID_DEPTO correcto a cada fila
+CC.drop(columns=['ID_DEPTO'], inplace=True)                                    # Elimino la antigua columna de ID_DEPTO
+CC = CC.merge(Departamentos, on=['Departamento', 'ID_PROV'], how='left')       # Asigno el ID_DEPTO correcto a cada fila
 # %%
 ee = ee.merge(Provincias, on= 'Provincia', how='left')
-ee = ee.merge(Departamentos, on=['Departamento', 'ID_PROV'], how='left')       # Agregar código de departamento
+ee = ee.merge(Departamentos, on=['Departamento', 'ID_PROV'], how='left')       # Agrego código de departamento
 
 #%% 
 # Armamos las bases a partir del DER que planteamos mediante funciones de Pandas y consultas SQL
@@ -367,30 +363,35 @@ consultaSQL = """
                 SELECT DISTINCT Cueanexo,
                 Nombre, 
                 ID_DEPTO
-                FROM ee;
+                FROM ee
                """
 Establecimientos_E = dd.sql(consultaSQL).df()
 
 # Consulta a la tabla de centros culturales
 consultaSQL = ''' 
                   SELECT DISTINCT ID_CC,
-                          CC.Nombre, 
-                          CC.Capacidad,
-                          CC.ID_DEPTO
+                  CC.Nombre, 
+                  CC.Capacidad,
+                  CC.ID_DEPTO
                   FROM CC
-                  ORDER BY Nombre; 
+                  ORDER BY Nombre 
                 '''
 Centros_C = dd.sql(consultaSQL).df()
 
 # Consulta para crear la tabla de niveles educativos
 consultaSQL = """
-                  SELECT 1 AS id_Nivel_Educativo, 'Nivel inicial - Jardín Maternal' AS Nombre UNION ALL
-                  SELECT 2, 'Nivel inicial - Jardín de Infantes' UNION ALL
-                  SELECT 3, 'Primario' UNION ALL
-                  SELECT 4, 'Secundario' UNION ALL
-                  SELECT 5, 'Secundario - INET' UNION ALL
-                  SELECT 6, 'SNU' UNION ALL
-                  SELECT 7, 'SNU - INET';
+                  SELECT
+                  id AS id_Nivel_Educativo,
+                  CASE id
+                  WHEN 1 THEN 'Nivel inicial - Jardín Maternal'
+                  WHEN 2 THEN 'Nivel inicial - Jardín de Infantes'
+                  WHEN 3 THEN 'Primario'
+                  WHEN 4 THEN 'Secundario'
+                  WHEN 5 THEN 'Secundario - INET'
+                  WHEN 6 THEN 'SNU'
+                  WHEN 7 THEN 'SNU - INET'
+                  END AS Nombre
+                  FROM range(1, 8) AS t(id);     ---se usa t() para definir una tabla temporal
                """
 Nivel_Educativo = dd.sql(consultaSQL).df()
 
@@ -412,17 +413,17 @@ Nivel_Educativo_de_ee = dd.sql(consultaSQL).df()
 
 # Consulta para el reporte demográfico
 consultaSQL = ''' 
-                  SELECT Edad, ID_DEPTO, Poblacion FROM df_final
+                  SELECT Edad, ID_DEPTO, Poblacion FROM pp
                '''
 Reporte_Demografico = dd.sql(consultaSQL).df()
 
 #----------------------------------------- Creo la entidad débil Mails_CC -----------------------------
 Mails = CC.copy()
-Mails["Mail"] = Mails["Mail"].fillna("").astype(str)  # Me aseguro que la columna de mails es string y saco nans
-email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"  # Formato generico para extraer mails completos
-Mails["mails_extraidos"] = Mails["Mail"].apply(lambda x: re.findall(email_pattern, x))  # Extraigo correos
-Mails = Mails.explode("mails_extraidos", ignore_index=True)  # Exploto las listas en filas separadas
-Mails = Mails.drop(columns=["Mail"]).rename(columns={"mails_extraidos": "Mail"})  # Renombro la columna
+Mails["Mail"] = Mails["Mail"].fillna("").astype(str)                                                     # Me aseguro que la columna de mails es string y saco nans
+email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"                                        # Formato generico para extraer mails completos
+Mails["mails_extraidos"] = Mails["Mail"].apply(lambda x: re.findall(email_pattern, x))                   # Extraigo correos
+Mails = Mails.explode("mails_extraidos", ignore_index=True)                                              # Exploto las listas en filas separadas
+Mails = Mails.drop(columns=["Mail"]).rename(columns={"mails_extraidos": "Mail"})                         # Renombro la columna
 Mails = Mails.drop(columns=['ID_PROV', 'ID_DEPTO', 'Provincia', 'Departamento', 'Nombre', 'Capacidad'])  # Elimino atributos innecesarios
 
 Departamentos['Departamento'] = Departamentos['Departamento'].str.title()
@@ -440,44 +441,92 @@ Reporte_Demografico.to_csv('Reporte_Demografico.csv', index=False)
 #%% EJERCICIOS DE CONSULTAS SQL
 #%%% EJERCICIO 1
 
-# Consulto Establecimientos Educativos por Nivel en cada departamento
+# Paso 1: Genero el DataFrame de escuelas agregadas utilizando subconsultas
 consultaSQL = """
-                WITH Escuelas AS (
-                    SELECT 
-                        d.ID_DEPTO,
-                        SUM(CASE WHEN ne.id_Nivel_Educativo = 1 THEN 1 ELSE 0 END) AS Cant_Escuelas_Inicial,
-                        SUM(CASE WHEN ne.id_Nivel_Educativo = 2 THEN 1 ELSE 0 END) AS Cant_Escuelas_Primaria,
-                        SUM(CASE WHEN ne.id_Nivel_Educativo = 3 THEN 1 ELSE 0 END) AS Cant_Escuelas_Secundaria
-                    FROM Departamentos AS d
-                    LEFT JOIN Establecimientos_E AS ee ON d.ID_DEPTO = ee.ID_DEPTO
-                    LEFT JOIN Nivel_Educativo_de_ee AS ne ON ee.Cueanexo = ne.Cueanexo
-                    GROUP BY d.ID_DEPTO
-                ),
-                Poblacion AS (
-                    SELECT 
-                        ID_DEPTO,
-                        SUM(CASE WHEN Edad BETWEEN 3 AND 5 THEN Poblacion ELSE 0 END) AS Poblacion_Inicial,
-                        SUM(CASE WHEN Edad BETWEEN 6 AND 12 THEN Poblacion ELSE 0 END) AS Poblacion_Primaria,
-                        SUM(CASE WHEN Edad BETWEEN 13 AND 18 THEN Poblacion ELSE 0 END) AS Poblacion_Secundaria
-                    FROM Reporte_Demografico
-                    GROUP BY ID_DEPTO
-                )
                 SELECT 
-                    p.Provincia,
-                    d.Departamento,
-                    e.Cant_Escuelas_Inicial AS Jardines,
-                    po.Poblacion_Inicial AS "Población Jardin",
-                    e.Cant_Escuelas_Primaria AS Primarias,
-                    po.Poblacion_Primaria AS "Población Primaria",
-                    e.Cant_Escuelas_Secundaria AS Secundarios,
-                    po.Poblacion_Secundaria AS "Población Secundaria"
+                d.ID_DEPTO,
+                (SELECT COUNT(*) 
+                 FROM Establecimientos_E AS ee 
+                 JOIN Nivel_Educativo_de_ee AS ne 
+                 ON ee.Cueanexo = ne.Cueanexo
+                 WHERE ee.ID_DEPTO = d.ID_DEPTO 
+                 AND (ne.id_Nivel_Educativo = 1 
+                      OR ne.id_Nivel_Educativo = 2 )) AS Cant_Escuelas_Inicial,
+                (SELECT COUNT(*) 
+                 FROM Establecimientos_E AS ee 
+                 JOIN Nivel_Educativo_de_ee AS ne 
+                 ON ee.Cueanexo = ne.Cueanexo
+                 WHERE ee.ID_DEPTO = d.ID_DEPTO 
+                 AND ne.id_Nivel_Educativo = 3) AS Cant_Escuelas_Primaria,
+                (SELECT COUNT(*) 
+                 FROM Establecimientos_E AS ee 
+                 JOIN Nivel_Educativo_de_ee AS ne 
+                 ON ee.Cueanexo = ne.Cueanexo
+                 WHERE ee.ID_DEPTO = d.ID_DEPTO 
+                 AND (ne.id_Nivel_Educativo = 4
+                      OR ne.id_Nivel_Educativo = 5)) AS Cant_Escuelas_Secundaria
                 FROM Departamentos AS d
-                JOIN Provincias AS p ON d.ID_PROV = p.ID_PROV
-                JOIN Escuelas AS e ON d.ID_DEPTO = e.ID_DEPTO
-                JOIN Poblacion AS po ON d.ID_DEPTO = po.ID_DEPTO
-                ORDER BY p.Provincia ASC, e.Cant_Escuelas_Primaria DESC
-              """
+                """
+df_escuelas_agregadas = dd.sql(consultaSQL).df()
+
+# Paso 2: Genero el DataFrame de población por departamento diferenciando los rangos de edades
+consultaSQL = """
+                 SELECT 
+                 ID_DEPTO,
+                 SUM(CASE WHEN Edad BETWEEN 3 AND 5 THEN Poblacion ELSE 0 END) AS Poblacion_Inicial,
+                 SUM(CASE WHEN Edad BETWEEN 6 AND 12 THEN Poblacion ELSE 0 END) AS Poblacion_Primaria,
+                 SUM(CASE WHEN Edad BETWEEN 13 AND 18 THEN Poblacion ELSE 0 END) AS Poblacion_Secundaria
+                 FROM Reporte_Demografico
+                 GROUP BY ID_DEPTO
+                 """
+df_poblacion_agregada = dd.sql(consultaSQL).df()
+
+# Paso 3: Genero el DataFrame con la información geográfica (Departamentos y Provincias)
+consultaSQL = """
+                 SELECT 
+                 d.ID_DEPTO,
+                 p.Provincia,
+                 d.Departamento
+                 FROM Departamentos AS d
+                 JOIN Provincias AS p 
+                 ON d.ID_PROV = p.ID_PROV
+                 """
+df_dep_prov = dd.sql(consultaSQL).df()
+
+# Paso 4: Uno df_dep_prov con df_escuelas_agregadas para agregar los conteos de escuelas
+consultaSQL = """
+                 SELECT 
+                 dp.Provincia,
+                 dp.Departamento,
+                 dp.ID_DEPTO,
+                 ea.Cant_Escuelas_Inicial AS Jardines,
+                 ea.Cant_Escuelas_Primaria AS Primarias,
+                 ea.Cant_Escuelas_Secundaria AS Secundarios
+                 FROM df_dep_prov AS dp
+                 JOIN df_escuelas_agregadas AS ea
+                 ON dp.ID_DEPTO = ea.ID_DEPTO
+                 """
+df_escuelas_dep = dd.sql(consultaSQL).df()
+
+# Paso 5: Uno df_escuelas_dep con df_poblacion_agregada para obtener el resultado final
+consultaSQL = """
+                 SELECT 
+                 ed.Provincia,
+                 ed.Departamento,
+                 ed.Jardines,
+                 pa.Poblacion_Inicial AS "Población Jardin",
+                 ed.Primarias,
+                 pa.Poblacion_Primaria AS "Población Primaria",
+                 ed.Secundarios,
+                 pa.Poblacion_Secundaria AS "Población Secundaria"
+                 FROM df_escuelas_dep AS ed
+                 JOIN df_poblacion_agregada AS pa
+                 ON ed.ID_DEPTO = pa.ID_DEPTO
+                 ORDER BY ed.Provincia ASC, ed.Primarias DESC
+                 """
+                 
 Nivel_Ed_por_Prov = dd.sql(consultaSQL).df()
+
 
 # %%
 Nivel_Ed_por_Prov.to_csv('Nivel_Ed_por_Prov.csv', index=False)
@@ -486,39 +535,72 @@ Nivel_Ed_por_Prov.to_csv('Nivel_Ed_por_Prov.csv', index=False)
 #%%% EJERCICIO 2
 
 # Decisión: los CC con capacidad 's/d' no los contamos como mayor a 100
-consultaSQL = """
-                SELECT 
-                    d.ID_DEPTO,
-                    d.Departamento,
-                    p.Provincia,
-                    COUNT(CASE 
-                              WHEN cc.Capacidad != 's/d' AND CAST(cc.Capacidad AS INTEGER) > 100 THEN cc.ID_CC 
-                              ELSE NULL 
-                          END) AS Cantidad_CC
-                FROM 
-                    Departamentos d
-                JOIN 
-                    Provincias p ON d.ID_PROV = p.ID_PROV
-                LEFT JOIN 
-                    Centros_C cc ON d.ID_DEPTO = cc.ID_DEPTO
-                GROUP BY 
-                    d.ID_DEPTO, d.Departamento, p.Provincia
-                ORDER BY 
-                    p.Provincia ASC,
-                    Cantidad_CC DESC
-              """
+
+consultaSQL= ''' SELECT 
+                 ID_CC,
+                 ID_DEPTO,
+                 ID_PROV,
+                 CASE WHEN Capacidad = 's/d' 
+                 THEN '0'
+                 ELSE Capacidad END AS Capacidad
+                 FROM CC '''
+
+df_cambio_cap=dd.sql(consultaSQL).df()
+
+#ahora agrego los departamentos que no están en la tabla de centros culturales
+
+consultaSQL='''
+                SELECT d.Departamento,
+                d.ID_DEPTO,
+                d.ID_PROV,
+                cc.Capacidad
+                FROM df_cambio_cap AS cc
+                RIGHT OUTER JOIN
+                Departamentos AS d
+                ON d.ID_DEPTO = cc.ID_DEPTO
+'''
+
 depto_CC_100 = dd.sql(consultaSQL).df()
 
-# Consulta para mostrar los resultados
+#cambio los None a 0 en capacidad
+
+consultaSQL= ''' SELECT 
+                 Departamento,
+                 ID_DEPTO,
+                 ID_PROV,
+                 CASE WHEN Capacidad IS NULL 
+                 THEN '0' ELSE Capacidad END AS Capacidad
+                 FROM depto_CC_100 '''
+
+df_cambio_cap=dd.sql(consultaSQL).df()
+
+#agrego la provincia
+
+consultaSQL= '''
+                SELECT 
+                p.Provincia,
+                cc.Departamento,
+                cc.Capacidad
+                FROM df_cambio_cap AS cc
+                LEFT OUTER JOIN Provincias AS p
+                ON cc.ID_PROV = p.ID_PROV
+'''
+depto_CC_100 = dd.sql(consultaSQL).df()
+
 consultaSQL = ''' 
-                 SELECT 
-                 Departamento, 
+                 SELECT  
                  Provincia,
-                 Cantidad_CC AS "Cantidad de CC con cap>100"
+                 Departamento,
+                 COUNT(CASE WHEN CAST(Capacidad AS INTEGER) > 100 THEN Capacidad ELSE Null END) AS "Cantidad de CC con cap>100"       --- se uitiliza CAST(Capacidad AS INTEGER) porque algunos de los registros de capacidad no son int y debemos hacerlos int, sería como usar un .astype(int)
                  FROM 
                  depto_CC_100
-               '''
+                 GROUP BY Departamento, Provincia
+                 ORDER BY provincia ASC, "Cantidad de CC con cap>100" DESC
+                 '''
 depto_CC_100 = dd.sql(consultaSQL).df()
+
+
+#%%
 depto_CC_100.to_csv('depto_CC_100.csv', index=False)
 
 
@@ -561,6 +643,23 @@ consultaSQL = """
 
               """
 Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
+
+
+#ahora selecciono solo que necesito
+#hay algunos departamentos que no se encuentran en el df de reporte demográfico, por lo que devuelve Nulls en esa sección de esa tabla, interpretaremos esos Null como 0, para mantener el typo de dato a lo largo de la tabla.
+
+consultaSQL=''' 
+                SELECT 
+                Provincia,
+                Departamento,
+                Cantidad_EE AS "Cantidad EE",
+                Cantidad_CC AS "Cantidad CC",
+                CASE WHEN Poblacion_Total IS Null THEN '0' ELSE Poblacion_Total END AS "Población Total"
+                FROM Cant_CC_EE_Pob
+                '''
+Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
+
+#%%
 Cant_CC_EE_Pob.to_csv('Cant_CC_EE_Pob.csv', index=False)
 
 
@@ -571,44 +670,90 @@ Cant_CC_EE_Pob.to_csv('Cant_CC_EE_Pob.csv', index=False)
 ### entonces si hay un depto que ninguno de sus centros tiene mail, no va a
 ### ser considerado para esta tabla
 
-consulta_dominios = """
-       WITH conteo_dominios AS (
-           SELECT 
-               d.ID_DEPTO,
-               p.Provincia,
-               d.Departamento,
-               LOWER(SPLIT_PART(SPLIT_PART(m.Mail, '@', 2), '.', 1)) AS dominio,  ---indico cual es el dominio
-               COUNT(DISTINCT cc.ID_CC) AS cnt
-           FROM Departamentos d
-           JOIN Provincias p ON d.ID_PROV = p.ID_PROV
-           JOIN Centros_C cc ON d.ID_DEPTO = cc.ID_DEPTO
-           JOIN Mails m ON cc.ID_CC = m.ID_CC
-           WHERE m.Mail IS NOT NULL
-           AND m.Mail <> ''                                              ---se excluyen registros que tengan cadenas vacías
-           GROUP BY d.ID_DEPTO, p.Provincia, d.Departamento, dominio
-           ),
-       max_counts AS (
-           SELECT 
-               ID_DEPTO,
-               MAX(cnt) AS max_cnt
-           FROM conteo_dominios
-           GROUP BY ID_DEPTO
-           )
-       SELECT 
-           dc.Provincia,
-           dc.Departamento,
-           dc.dominio AS Dominio_mas_frecuente
-       FROM conteo_dominios dc
-       JOIN max_counts mc
-       ON dc.ID_DEPTO = mc.ID_DEPTO AND dc.cnt = mc.max_cnt
-       ORDER BY dc.Provincia ASC, dc.Departamento ASC
+# Paso 1: Uno Departamentos y Provincias
+consulta_dp = """
+        SELECT 
+         d.ID_DEPTO,
+         p.Provincia,
+         d.Departamento
+         FROM Departamentos AS d
+         JOIN Provincias AS p ON d.ID_PROV = p.ID_PROV
 """
+tabla_dp = dd.sql(consulta_dp).df()
 
-dominios_cc = dd.sql(consulta_dominios).df()
+
+# Paso 2: Un0 Centros_C y Mails para extraer el dominio
+consulta_cm = """
+         SELECT 
+         cc.ID_DEPTO,
+         LOWER(SPLIT_PART(SPLIT_PART(m.Mail, '@', 2), '.', 1)) AS dominio,
+         cc.ID_CC
+         FROM Centros_C AS cc
+         JOIN Mails AS m ON cc.ID_CC = m.ID_CC
+         WHERE m.Mail IS NOT NULL 
+         AND m.Mail <> ''
+"""
+tabla_cm = dd.sql(consulta_cm).df()
+
+
+# Paso 3: Calculo el conteo de dominios por departamento
+consulta_conteo = """
+         SELECT 
+         ID_DEPTO,
+         dominio,
+         COUNT(DISTINCT ID_CC) AS cnt
+         FROM tabla_cm
+         GROUP BY ID_DEPTO, dominio
+"""
+conteo_dominios = dd.sql(consulta_conteo).df()
+
+
+# Paso 4: Obtengo el máximo conteo por departamento
+consulta_max = """
+         SELECT 
+         ID_DEPTO,
+         MAX(cnt) AS max_cnt
+         FROM conteo_dominios
+         GROUP BY ID_DEPTO
+"""
+tabla_max = dd.sql(consulta_max).df()
+
+
+# Paso 5: Filtro el/los dominio(s) con mayor frecuencia
+consulta_max_dominio = """
+         SELECT 
+         cd.ID_DEPTO,
+         cd.dominio,
+         cd.cnt
+         FROM conteo_dominios AS cd
+         JOIN tabla_max AS tm ON cd.ID_DEPTO = tm.ID_DEPTO 
+         AND cd.cnt = tm.max_cnt
+"""
+tabla_max_dominio = dd.sql(consulta_max_dominio).df()
+
+
+# Paso 6: Uno con la información de Departamentos y Provincias para la tabla final
+consulta_final = """
+         SELECT 
+         dp.Provincia,
+         dp.Departamento,
+         tmd.dominio AS Dominio_mas_frecuente
+         FROM tabla_max_dominio AS tmd
+         JOIN tabla_dp AS dp ON tmd.ID_DEPTO = dp.ID_DEPTO
+         ORDER BY dp.Provincia ASC, dp.Departamento ASC
+"""
+dominios_cc = dd.sql(consulta_final).df()
+
+
+#%%
 dominios_cc.to_csv('dominios_cc.csv', index=False)
 
-
-
+#%%
+dominio_max = dominios_cc['Dominio_mas_frecuente'].value_counts().idxmax()
+apariciones_dom_max = dominios_cc['Dominio_mas_frecuente'].value_counts().max()
+porcentaje = (apariciones_dom_max / len(dominios_cc)) * 100
+ 
+print(f'El dominio que más aparece es {dominio_max} con {apariciones_dom_max} apariciones, esto es el {porcentaje:.2f}% del total')
 #%% VIZUALIZACIÓN DE DATOS
 #%%% EJERCICIO 1
 
@@ -632,53 +777,57 @@ cc_por_provincia['Provincia'] = cc_por_provincia['Provincia'].replace({
 plt.figure(figsize=(10, 6))
 plt.rcParams.update({'font.size': 11})
 sns.barplot(data=cc_por_provincia, x='Cantidad_CC', y='Provincia', palette='viridis')
-plt.title('Cantidad de Centros Culturales por Provincia')
 plt.xlabel('Cantidad de Centros Culturales')
 plt.ylabel('Provincia')
 plt.show()
 
 
 #%%% EJERCICIO 2
-# Cambio el nombre de Tierra del Fuego, Antártida e Islas del Atlántico Sur para que los graficos sea más legible 
-Nivel_Ed_por_Prov['Provincia'] = Nivel_Ed_por_Prov['Provincia'].replace(
-    'Tierra del Fuego, Antártida e Islas del Atlántico Sur', 
-    'Tierra del Fuego'
+
+# Construyo un DataFrame "apilado" para el scatterplot.
+
+df_scatter_jardines = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Jardin'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Jardines'],
+    'Grupo_Etario': 'Jardines'
+})
+
+df_scatter_primarias = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Primaria'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Primarias'],
+    'Grupo_Etario': 'Primarias'
+})
+
+df_scatter_secundarios = pd.DataFrame({
+    'Poblacion': Nivel_Ed_por_Prov['Población Secundaria'],
+    'Cantidad_EE': Nivel_Ed_por_Prov['Secundarios'],
+    'Grupo_Etario': 'Secundarios'
+})
+
+# Uno todo en un solo DataFrame
+df_scatter = pd.concat([df_scatter_jardines, 
+                        df_scatter_primarias, 
+                        df_scatter_secundarios],
+                       ignore_index=True)
+
+# Grafico el scatterplot
+plt.figure(figsize=(12, 8))
+plt.rcParams.update({'font.size':18})
+sns.scatterplot(
+    data=df_scatter,
+    x='Poblacion',
+    y='Cantidad_EE',
+    hue='Grupo_Etario',
+    alpha=0.6,
+    palette='Set1'
 )
-# Elimino la ciudad autonoma de buenos aires ya que al estar representada con un único departamento no puede ser representada con un boxplot (esta información se encuentra disponible en la primera consulta de sql)
-df_filtrado = Nivel_Ed_por_Prov[Nivel_Ed_por_Prov['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
 
-# Calculo el total de las provincias y su orden para ponerlas de mayor a menos según cantidad de escuelas
-df_totales = df_filtrado.groupby('Provincia')[['Jardines', 'Primarias', 'Secundarios']].sum()
-df_totales['Total_EE'] = df_totales.sum(axis=1)
-order_provincias = df_totales.sort_values('Total_EE', ascending=False).index.tolist()
-
-# Transformo a formato largo para graficar
-df_long = df_filtrado.melt(
-    id_vars=['Provincia', 'Departamento'],
-    value_vars=['Jardines', 'Primarias', 'Secundarios'],
-    var_name='Grupo_Etario',
-    value_name='Cantidad_EE'
-)
-
-
-# Grafico los boxplot
-plt.figure(figsize=(35,10))
-plt.rcParams.update({'font.size': 25})
-sns.boxplot(
-    data=df_long, 
-    x='Provincia', 
-    y='Cantidad_EE', 
-    hue='Grupo_Etario', 
-    palette='Set2',
-    order=order_provincias
-)
-plt.xticks(rotation=90)
-plt.xlabel('Provincia')
-plt.ylabel('Cantidad de EE')
-plt.title('Distribución de Establecimientos Educativos por Provincia y Grupo Etario')
+plt.xlabel('Población por Nivel Educativo')
+plt.ylabel('Cantidad de Establecimientos Educativos')
+plt.xlim(0, 90000)
+plt.ylim(0, 400)
 plt.legend(title='Grupo Etario')
 plt.show()
-
 
 #%%% EJERCICIO 3
 
@@ -706,90 +855,71 @@ orden_provincias = medianas.index.tolist()
 
 # grafico
 plt.figure(figsize=(20,12))
+plt.rcParams.update({'font.size':18})
 sns.boxplot(x="Provincia", y="Cantidad_de_EE", data=df_filtrado2, order=orden_provincias, palette="viridis")
 plt.xticks(rotation=90)
 plt.xlabel("Provincia")
 plt.ylabel("Cantidad de EE por Departamento")
-plt.title("Distribución de EE por Departamento en cada Provincia")
 plt.show()
 
 
-#%% EJERCICIO 4 
+#%% EJERCICIO 4 : Scatter de Cantidad de CC cada 1000 habs en función de cantidad de EE cada 1000 habs
 
-# 1. Población por provincia
-pop_depto = Reporte_Demografico.groupby("ID_DEPTO")["Poblacion"].sum().reset_index()                            # Sumo la población por departamento 
-pop_depto = pop_depto.merge(Departamentos[["ID_DEPTO", "ID_PROV"]], on="ID_DEPTO", how="left")
-pop_prov = pop_depto.groupby("ID_PROV")["Poblacion"].sum().reset_index()                                        # ahora la sumo por provincia
-pop_prov = pop_prov.merge(Provincias, on="ID_PROV", how="left")                                                 # Agrego el nombre de la provincia
+'''Se definen 3 clases con el fin de separar en grupos de estudio:
+# CABA,
+# Departamento de la Provincia de Buenos Aires,
+# Departamento de otra provincia en general'''
 
-# 2. Establecimientos Educativos por provincia 
-EE_prov = Cantidad_de_EE
+# Se conservan del dataframe aquellos cuya provincia sea CABA
+caba = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Ciudad Autónoma de Buenos Aires']
+# Se conservan del dataframe aquellos cuya provincia sea Buenos Aires
+buenos_aires = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] == 'Buenos Aires']
+# Se conservan del dataframe aquellos cuya provincia no sea CABA ...
+otras_provincias = Cant_CC_EE_Pob[Cant_CC_EE_Pob['Provincia'] != 'Ciudad Autónoma de Buenos Aires']
+# ... Ni Buenos Aires
+otras_provincias = otras_provincias[otras_provincias['Provincia'] != 'Buenos Aires']
 
-# 3. Centros Culturales por provincia
-CC_depto = Centros_C.merge(Departamentos[["ID_DEPTO", "ID_PROV"]], on="ID_DEPTO", how="left")
-CC_prov = CC_depto.groupby("ID_PROV")["ID_CC"].count().reset_index().rename(columns={"ID_CC": "Cantidad_CC"})  # cuento los CC por provincia
-CC_prov = CC_prov.merge(Provincias, on="ID_PROV", how="left")                                                   # Agrego el nombre de la provincia
+# Se crean listas para almacenar los datos de los ejes x e y,
+# para las tres clases
+x_caba, y_caba = [], []
+x_buenos_aires, y_buenos_aires = [], []
+x_otras_provincias, y_otras_provincias = [], []
 
-pop_prov = pop_prov.replace('Tierra del Fuego, Antártida e Islas del Atlántico Sur', 'Tierra del Fuego' )
-CC_prov = CC_prov.replace('Tierra del Fuego, Antártida e Islas del Atlántico Sur', 'Tierra del Fuego' )
+# Se recorren los departamentos de cada clase
+# y se agregan los valores de 'Estab_x_mil' y 'CC_x_mil'
+for idx, row in caba.iterrows():
+    x_caba.append(row['Estab_x_mil'])
+    y_caba.append(row['CC_x_mil'])
 
-# 4. Calcular indicadores por mil habitantes a nivel provincial
-df_EE = EE_prov.merge(pop_prov, on="Provincia", how="left")                                                     # Uno la información de EE y población (usando el nombre de provincia)
-df_EE["EE_por_1000"] = df_EE["Cantidad_de_EE"] / df_EE["Poblacion"] * 1000
+for idx, row in buenos_aires.iterrows():
+    x_buenos_aires.append(row['Estab_x_mil'])
+    y_buenos_aires.append(row['CC_x_mil'])
 
-# Hago lo mismo para CC
-df_CC = CC_prov.merge(pop_prov, on="Provincia", how="left")
-df_CC["CC_por_1000"] = df_CC["Cantidad_CC"] / df_CC["Poblacion"] * 1000
+for idx, row in otras_provincias.iterrows():
+    x_otras_provincias.append(row['Estab_x_mil'])
+    y_otras_provincias.append(row['CC_x_mil'])
 
-# Uno ambos indicadores en un solo DataFrame
-df_viz = df_EE.merge(df_CC[["Provincia", "CC_por_1000"]], on="Provincia", how="outer")
+# Se crea el Scatter
+plt.figure(figsize=(12, 9))
 
-# 5. Preparo los datos para el gráfico por provincia (dos barras por provincia)
-df_long = pd.melt(df_viz, id_vars="Provincia", 
-                  value_vars=["EE_por_1000", "CC_por_1000"],
-                  var_name="Tipo", value_name="Valor")
-# cambio los nombres
-df_long["Tipo"] = df_long["Tipo"].map({
-    "EE_por_1000": "Establecimientos Educativos",
-    "CC_por_1000": "Centros Culturales"
-})
+# Se grafica cada clase con diferentes colores y formas
+# Se aumenta el tamaño del ítem que corresponde a CABA
+plt.scatter(x_caba, y_caba, color='green', label='CABA', alpha=1, marker='o', s=300)
+# Se baja la opacidad de los departamentos de Buenos Aires y de otras provincias
+plt.scatter(x_buenos_aires, y_buenos_aires, color='blue', label='Departamentos de Buenos Aires', alpha=0.6, marker='^',s=70)
+plt.scatter(x_otras_provincias, y_otras_provincias, color='red', label='Departamentos de otras provincias', alpha=0.6, marker='s', s=70)
 
-# cambio los nombres a tierra del fuego y caba para que el gráfico sea más legible
-df_long['Provincia'] = df_long['Provincia'].replace({
-    'Tierra del Fuego, Antártida e Islas del Atlántico Sur':'Tierra del Fuego',
-    'Ciudad Autónoma de Buenos Aires':'CABA'
-})
 
-# Gráfico por provincia
-plt.figure(figsize=(25,15))
-sns.barplot(data=df_long, x="Provincia", y="Valor", hue="Tipo", palette="Set2")
-plt.xticks(rotation=90)
-plt.xlabel("Provincia")
-plt.ylabel("Cantidad por mil habitantes")
-plt.yscale("log")
-plt.title("Centros Culturales vs Establecimientos Educativos por mil habitantes por Provincia")
-plt.grid(True)
+# Se añaden las etiquetas y título
+plt.xlabel('EE cada mil habs.')
+plt.ylabel('CC cada mil habs.')
+
+# Se añade la leyenda que especifica la clave para cada dato
+plt.legend(loc='upper right', fontsize=15, title='Categorías')
+plt.grid(False)
+
+
+# Se presenta el gráfico
 plt.show()
 
-# 6. Calculo los indicadores a nivel nacional
-total_EE = EE_prov["Cantidad_de_EE"].sum()
-total_CC = CC_prov["Cantidad_CC"].sum()
-total_pop = pop_prov["Poblacion"].sum()
 
-EE_por_1000_nacional = total_EE / total_pop * 1000
-CC_por_1000_nacional = total_CC / total_pop * 1000
-
-df_nacional = pd.DataFrame({
-    "Tipo": ["Establecimientos Educativos", "Centros Culturales"],
-    "Valor": [EE_por_1000_nacional, CC_por_1000_nacional]
-})
-
-# Gráfico nacional
-plt.figure(figsize=(20,15))
-sns.barplot(data=df_nacional, x="Tipo", y="Valor", palette="Set2")
-plt.xlabel("")
-plt.ylabel("Cantidad por mil habitantes")
-plt.title("Comparación Nacional: Centros Culturales vs Establecimientos Educativos por mil habitantes")
-plt.yscale('log')
-plt.grid()
-plt.show()
