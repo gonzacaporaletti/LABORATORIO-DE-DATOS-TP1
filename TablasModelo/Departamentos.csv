@@ -2,16 +2,16 @@ ID_DEPTO,Departamento,ID_PROV
 1,12 De Octubre,22
 2,1º De Mayo,22
 3,2 De Abril,22
-4,25 De Mayo,54
-5,25 De Mayo,22
-6,25 De Mayo,6
-7,25 De Mayo,70
-8,25 De Mayo,62
+4,25 De Mayo,70
+5,25 De Mayo,62
+6,25 De Mayo,22
+7,25 De Mayo,6
+8,25 De Mayo,54
 9,9 De Julio,70
-10,9 De Julio,82
-11,9 De Julio,6
-12,9 De Julio,22
-13,9 De Julio,62
+10,9 De Julio,22
+11,9 De Julio,62
+12,9 De Julio,6
+13,9 De Julio,82
 14,Adolfo Alsina,62
 15,Adolfo Alsina,6
 16,Adolfo Gonzales Chaves,6
@@ -38,8 +38,8 @@ ID_DEPTO,Departamento,ID_PROV
 37,Avellaneda,6
 38,Avellaneda,86
 39,Avellaneda,62
-40,Ayacucho,6
-41,Ayacucho,74
+40,Ayacucho,74
+41,Ayacucho,6
 42,Azul,6
 43,Bahia Blanca,6
 44,Balcarce,6
@@ -47,15 +47,15 @@ ID_DEPTO,Departamento,ID_PROV
 46,Baradero,6
 47,Bariloche,62
 48,Belen,10
-49,Belgrano,82
-50,Belgrano,74
+49,Belgrano,74
+50,Belgrano,82
 51,Belgrano,86
 52,Bella Vista,18
 53,Benito Juarez,6
 54,Berazategui,6
 55,Berisso,6
-56,Bermejo,34
-57,Bermejo,22
+56,Bermejo,22
+57,Bermejo,34
 58,Beron De Astrada,18
 59,Biedma,26
 60,Bolivar,6
@@ -76,13 +76,13 @@ ID_DEPTO,Departamento,ID_PROV
 75,Capital,10
 76,Capital,14
 77,Capital,54
-78,Capital,70
-79,Capital,46
-80,Capital,18
-81,Capital,50
-82,Capital,90
-83,Capital,42
-84,Capital,86
+78,Capital,18
+79,Capital,50
+80,Capital,90
+81,Capital,42
+82,Capital,86
+83,Capital,46
+84,Capital,70
 85,Capitan Sarmiento,6
 86,Carlos Casares,6
 87,Carlos Tejedor,6
@@ -95,9 +95,9 @@ ID_DEPTO,Departamento,ID_PROV
 94,Catrilo,42
 95,Caucete,70
 96,Cerrillos,66
-97,Chacabuco,74
-98,Chacabuco,22
-99,Chacabuco,6
+97,Chacabuco,22
+98,Chacabuco,6
+99,Chacabuco,74
 100,Chalileo,42
 101,Chamical,46
 102,Chapaleufu,42
@@ -160,8 +160,8 @@ ID_DEPTO,Departamento,ID_PROV
 159,Feliciano,30
 160,Figueroa,86
 161,Florencio Varela,6
-162,Florentino Ameghino,26
-163,Florentino Ameghino,6
+162,Florentino Ameghino,6
+163,Florentino Ameghino,26
 164,Formosa,34
 165,Fray Justo Santa Maria De Oro,22
 166,Fray Mamerto Esquiu,10
@@ -171,8 +171,8 @@ ID_DEPTO,Departamento,ID_PROV
 170,Gastre,26
 171,General Alvarado,6
 172,General Alvear,50
-173,General Alvear,18
-174,General Alvear,6
+173,General Alvear,6
+174,General Alvear,18
 175,General Arenales,6
 176,General Belgrano,22
 177,General Belgrano,46
@@ -193,8 +193,8 @@ ID_DEPTO,Departamento,ID_PROV
 192,General Manuel Belgrano,54
 193,General Obligado,82
 194,General Ortiz De Ocampo,46
-195,General Paz,6
-196,General Paz,18
+195,General Paz,18
+196,General Paz,6
 197,General Pedernera,74
 198,General Pinto,6
 199,General Pueyrredon,6
@@ -202,8 +202,8 @@ ID_DEPTO,Departamento,ID_PROV
 201,General Roca,14
 202,General Rodriguez,6
 203,General San Martin,6
-204,General San Martin,46
-205,General San Martin,14
+204,General San Martin,14
+205,General San Martin,46
 206,General Taboada,86
 207,General Viamonte,6
 208,General Villegas,6
@@ -234,8 +234,8 @@ ID_DEPTO,Departamento,ID_PROV
 233,Ischilin,14
 234,Islas Del Ibicuy,30
 235,Itati,18
-236,Ituzaingo,18
-237,Ituzaingo,6
+236,Ituzaingo,6
+237,Ituzaingo,18
 238,Jachal,70
 239,Jimenez,86
 240,Jose C. Paz,6
@@ -244,8 +244,8 @@ ID_DEPTO,Departamento,ID_PROV
 243,Juan Martin De Pueyrredon,74
 244,Juarez Celman,14
 245,Junin,6
-246,Junin,74
-247,Junin,50
+246,Junin,50
+247,Junin,74
 248,La Caldera,66
 249,La Candelaria,66
 250,La Capital,82
@@ -253,8 +253,8 @@ ID_DEPTO,Departamento,ID_PROV
 252,La Costa,6
 253,La Matanza,6
 254,La Paz,50
-255,La Paz,30
-256,La Paz,10
+255,La Paz,10
+256,La Paz,30
 257,La Plata,6
 258,La Poma,66
 259,La Vina,66
@@ -276,9 +276,9 @@ ID_DEPTO,Departamento,ID_PROV
 275,Ledesma,38
 276,Lezama,6
 277,Libertad,22
-278,Libertador General San Martin,54
-279,Libertador General San Martin,22
-280,Libertador General San Martin,74
+278,Libertador General San Martin,22
+279,Libertador General San Martin,74
+280,Libertador General San Martin,54
 281,Lihuel Calel,42
 282,Limay Mahuida,42
 283,Lincoln,6
@@ -295,9 +295,9 @@ ID_DEPTO,Departamento,ID_PROV
 294,Lules,90
 295,Magallanes,78
 296,Magdalena,6
-297,Maipu,6
+297,Maipu,50
 298,Maipu,22
-299,Maipu,50
+299,Maipu,6
 300,Malargue,50
 301,Malvinas Argentinas,6
 302,Mar Chiquita,6
@@ -312,8 +312,8 @@ ID_DEPTO,Departamento,ID_PROV
 311,Mercedes,18
 312,Merlo,6
 313,Metan,66
-314,Minas,58
-315,Minas,14
+314,Minas,14
+315,Minas,58
 316,Mitre,86
 317,Molinos,66
 318,Monte,6
@@ -343,8 +343,8 @@ ID_DEPTO,Departamento,ID_PROV
 342,Patino,34
 343,Pehuajo,6
 344,Pehuenches,58
-345,Pellegrini,86
-346,Pellegrini,6
+345,Pellegrini,6
+346,Pellegrini,86
 347,Pergamino,6
 348,Pichi Mahuida,62
 349,Picun Leufu,58
@@ -388,10 +388,10 @@ ID_DEPTO,Departamento,ID_PROV
 387,Rio Segundo,14
 388,Rio Senguer,26
 389,Rivadavia,66
-390,Rivadavia,70
-391,Rivadavia,86
-392,Rivadavia,6
-393,Rivadavia,50
+390,Rivadavia,50
+391,Rivadavia,70
+392,Rivadavia,86
+393,Rivadavia,6
 394,Robles,86
 395,Rojas,6
 396,Roque Perez,6
@@ -407,8 +407,8 @@ ID_DEPTO,Departamento,ID_PROV
 406,Salto,6
 407,San Alberto,14
 408,San Andres De Giles,6
-409,San Antonio,38
-410,San Antonio,62
+409,San Antonio,62
+410,San Antonio,38
 411,San Antonio De Areco,6
 412,San Blas De Los Sauces,46
 413,San Carlos,66
@@ -421,8 +421,8 @@ ID_DEPTO,Departamento,ID_PROV
 420,San Ignacio,54
 421,San Isidro,6
 422,San Javier,14
-423,San Javier,82
-424,San Javier,54
+423,San Javier,54
+424,San Javier,82
 425,San Jeronimo,82
 426,San Justo,14
 427,San Justo,82
@@ -432,14 +432,14 @@ ID_DEPTO,Departamento,ID_PROV
 431,San Martin,86
 432,San Martin,50
 433,San Martin,82
-434,San Martin,18
-435,San Martin,70
-436,San Miguel,18
-437,San Miguel,6
+434,San Martin,70
+435,San Martin,18
+436,San Miguel,6
+437,San Miguel,18
 438,San Nicolas,6
-439,San Pedro,54
-440,San Pedro,6
-441,San Pedro,38
+439,San Pedro,38
+440,San Pedro,54
+441,San Pedro,6
 442,San Rafael,50
 443,San Roque,18
 444,San Salvador,30
@@ -450,8 +450,8 @@ ID_DEPTO,Departamento,ID_PROV
 449,Santa Lucia,70
 450,Santa Maria,10
 451,Santa Maria,14
-452,Santa Rosa,10
-453,Santa Rosa,50
+452,Santa Rosa,50
+453,Santa Rosa,10
 454,Santa Victoria,66
 455,Santo Tome,18
 456,Sargento Cabral,22

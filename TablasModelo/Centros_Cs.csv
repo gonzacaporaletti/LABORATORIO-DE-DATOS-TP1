@@ -6,7 +6,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 101,"ANDUMA, ESPACIO CULTURAL",s/d,112.0
 175,ARQUEOTERRA ,s/d,112.0
 758,Actitud Pandora,s/d,149.0
-1044,Acuarelas del sur,s/d,82.0
+1044,Acuarelas del sur,s/d,80.0
 607,Alas de Tigre,s/d,475.0
 9,Alcarajo Centro Cultural,s/d,112.0
 781,Alianza Francesa,s/d,495.0
@@ -25,7 +25,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 578,Artenpie,s/d,370.0
 211,Asoc. Civil La Bombocova,s/d,112.0
 135,Asociacion Calabresa Mutual Y Cultural,s/d,112.0
-925,Asociacion Civil Amigos de Merlo,s/d,246.0
+925,Asociacion Civil Amigos de Merlo,s/d,247.0
 38,Asociacion Civil Centro Cultural Deodoro Roca,20.0,112.0
 997,Asociacion Civil Jóvenes Por Rosario,s/d,397.0
 941,Asociacion Cultural Discepolin,s/d,221.0
@@ -88,7 +88,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 253,Caff - Club Atletico Fernandez Fierro,100.0,112.0
 759,Calidez Cultural,s/d,167.0
 75,Cangrejos Centro Cultural,s/d,112.0
-726,"Cantalicio ""Club social y cultural""",200.0,80.0
+726,"Cantalicio ""Club social y cultural""",200.0,78.0
 529,Cantinflas,s/d,286.0
 894,Carlos Canto,70.0,200.0
 1,Carpe Diem,s/d,112.0
@@ -99,7 +99,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 99,Casa Brandon,120.0,112.0
 521,Casa Carlos Fuentealba,s/d,286.0
 186,Casa Clorinda,150.0,112.0
-824,Casa Colmena,s/d,81.0
+824,Casa Colmena,s/d,79.0
 115,Casa Colombo,800.0,112.0
 536,"Casa Cultural ""Las Mirabal""",s/d,286.0
 52,Casa Cultural De Anibal Troilo Multiespacio Cultural,80.0,112.0
@@ -120,14 +120,14 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 934,Casa De Las Culturas ,s/d,
 794,Casa De Las Letras Espacio Cultural,s/d,142.0
 1064,Casa De la Cultura Enriqueta Gastelumendi,260.0,496.0
-924,Casa Del Poeta Antonio Esteban Agüero,120.0,246.0
+924,Casa Del Poeta Antonio Esteban Agüero,120.0,247.0
 257,Casa El Mate,50.0,112.0
 306,Casa Elefante,s/d,22.0
 234,Casa Epuyen,s/d,112.0
-435,Casa Frida,s/d,237.0
+435,Casa Frida,s/d,236.0
 252,Casa Gatica,s/d,112.0
 668,Casa Grote,95.0,76.0
-817,Casa Güemes,s/d,79.0
+817,Casa Güemes,s/d,83.0
 420,Casa Intermitente,s/d,199.0
 19,Casa Jache,130.0,112.0
 479,Casa Jirón (FUNDACION DE DEFENSA SOCIAL FUDESO),s/d,257.0
@@ -143,11 +143,11 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 423,Casa Popular Maria Claudia Falcone,s/d,203.0
 409,Casa Popular Marielle Franco			,s/d,150.0
 484,Casa Pulsar ,s/d,257.0
-818,Casa Qumanta,s/d,79.0
+818,Casa Qumanta,s/d,83.0
 348,Casa Rayuela,10.0,37.0
 161,Casa Rock,450.0,112.0
-572,Casa Rodolfo Walsh,s/d,370.0
 194,Casa Rodolfo Walsh,150.0,112.0
+572,Casa Rodolfo Walsh,s/d,370.0
 235,Casa Safiras,s/d,112.0
 828,Casa Violeta ,60.0,210.0
 480,Casa Zaragoza ,s/d,257.0
@@ -157,18 +157,18 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 477,Casa de Cultura y Peña La Salamanca,200.0,257.0
 609,Casa de Fuego,s/d,485.0
 445,Casa de La Cultura Villa Elisa,300.0,257.0
-876,Casa de la Cultura,150.0,511.0
 891,Casa de la Cultura,s/d,200.0
 1021,Casa de la Cultura,s/d,397.0
-875,Casa de la Cultura,s/d,290.0
+876,Casa de la Cultura,150.0,511.0
 969,Casa de la Cultura,s/d,250.0
+875,Casa de la Cultura,s/d,290.0
 692,Casa de la Cultura,s/d,201.0
-887,Casa de la Cultura,60.0,200.0
 1041,Casa de la Cultura,650.0,294.0
+887,Casa de la Cultura,60.0,200.0
 564,Casa de la Cultura,s/d,347.0
-713,Casa de la Cultura,s/d,387.0
 577,Casa de la Cultura,s/d,370.0
 985,Casa de la Cultura,s/d,267.0
+713,Casa de la Cultura,s/d,387.0
 721,Casa de la Cultura - Museo de la Ciudad,80.0,451.0
 910,Casa de la Cultura A.WA.WA. ,s/d,232.0
 563,Casa de la Cultura Carmen De Patagones,s/d,
@@ -203,7 +203,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 600,Centro Arte y Parte,s/d,469.0
 77,Centro Arzuano Mellidense - Cam -,s/d,112.0
 165,Centro Barrial y Cultural La Bonavena,s/d,112.0
-823,Centro Catalan,s/d,81.0
+823,Centro Catalan,s/d,79.0
 962,Centro Comunal ,s/d,193.0
 472,Centro Cultura y Comunicación,s/d,257.0
 870,Centro Cultural,s/d,123.0
@@ -234,11 +234,11 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 390,Centro Cultural Atilio Marinelli,s/d,53.0
 10,Centro Cultural Atlantix,s/d,112.0
 601,Centro Cultural Atrapasueños,s/d,469.0
-916,Centro Cultural Augusto Conte Grand,s/d,78.0
+916,Centro Cultural Augusto Conte Grand,s/d,84.0
 372,Centro Cultural Azucena Villaflor,s/d,37.0
 496,Centro Cultural Azulunala,s/d,257.0
 312,Centro Cultural Bella Vista,200.0,37.0
-436,Centro Cultural Bernardino Rivadavia,s/d,237.0
+436,Centro Cultural Bernardino Rivadavia,s/d,236.0
 288,Centro Cultural Borges- Fund.Para Artes,s/d,112.0
 90,Centro Cultural Buda Bar,500.0,112.0
 450,Centro Cultural Calle Uno ,s/d,257.0
@@ -263,7 +263,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 121,Centro Cultural De La Ciencia - C3,s/d,112.0
 152,Centro Cultural De La India Güngur,s/d,112.0
 906,Centro Cultural De Los Pueblos Originarios,s/d,184.0
-1035,Centro Cultural Del Bicentenario,200.0,84.0
+1035,Centro Cultural Del Bicentenario,200.0,82.0
 866,Centro Cultural Desafios,297.0,123.0
 829,Centro Cultural Dese el Ferro ,s/d,220.0
 26,Centro Cultural Din,s/d,112.0
@@ -271,7 +271,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 879,Centro Cultural Eduardo Galeano,90.0,47.0
 571,Centro Cultural Eduardo Galeano,s/d,370.0
 483,Centro Cultural El Amor y la Igualdad ,s/d,257.0
-919,Centro Cultural El Barro,s/d,390.0
+919,Centro Cultural El Barro,s/d,391.0
 376,Centro Cultural El Bastión,s/d,37.0
 60,Centro Cultural El Cantaro,s/d,112.0
 458,Centro Cultural El Faldón ,s/d,257.0
@@ -287,7 +287,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 744,Centro Cultural Espacio Maracuyá,s/d,419.0
 432,Centro Cultural Espacios,65.0,203.0
 662,Centro Cultural España Córdoba,s/d,76.0
-913,Centro Cultural Estacion San Martín,s/d,78.0
+913,Centro Cultural Estacion San Martín,s/d,84.0
 457,Centro Cultural Estación Provincial,100.0,257.0
 1061,Centro Cultural Esther Fadul,s/d,496.0
 311,Centro Cultural Florentino Ameghino,200.0,37.0
@@ -304,14 +304,14 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 1032,Centro Cultural Homero Manzi,150.0,45.0
 790,Centro Cultural Héctor Tizón,120.0,142.0
 462,Centro Cultural Islas Malvinas ,s/d,257.0
-821,Centro Cultural Israelita de Mendoza - Sala Ana Frank,60.0,81.0
+821,Centro Cultural Israelita de Mendoza - Sala Ana Frank,60.0,79.0
 605,Centro Cultural Itinerante El Musguito,s/d,469.0
 507,Centro Cultural Jacarandá ,s/d,257.0
 449,Centro Cultural Joaquín Areta ,s/d,257.0
 795,Centro Cultural Jorge Cafrune,s/d,142.0
 789,Centro Cultural Jose Maria Lesbegueris,s/d,357.0
-618,Centro Cultural Juana Azurduy,s/d,487.0
 375,Centro Cultural Juana Azurduy,70.0,37.0
+618,Centro Cultural Juana Azurduy,s/d,487.0
 542,Centro Cultural Julio Cesar Gioscio,s/d,310.0
 491,Centro Cultural Julio López Los Hornos  ,s/d,257.0
 318,Centro Cultural Justo Lynch,70.0,37.0
@@ -327,7 +327,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 543,Centro Cultural La Gotera,s/d,310.0
 7,Centro Cultural La Grieta,s/d,112.0
 776,Centro Cultural La Hendija,100.0,338.0
-730,Centro Cultural La Mansión Fundación Tangara,80.0,80.0
+730,Centro Cultural La Mansión Fundación Tangara,80.0,78.0
 798,Centro Cultural La Mar en Coche,100.0,142.0
 948,Centro Cultural La Máscara,50.0,90.0
 1011,Centro Cultural La Nave,s/d,397.0
@@ -347,9 +347,9 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 392,Centro Cultural Leon F. Rigolleau,s/d,54.0
 707,Centro Cultural Leonardo Favio,500.0,382.0
 147,Centro Cultural Leopoldo Gonzalez,s/d,112.0
-442,Centro Cultural Leopoldo Marechal,s/d,253.0
 433,Centro Cultural Leopoldo Marechal,s/d,226.0
-1050,Centro Cultural Leticia,s/d,82.0
+442,Centro Cultural Leopoldo Marechal,s/d,253.0
+1050,Centro Cultural Leticia,s/d,80.0
 944,Centro Cultural Linda Vista,s/d,261.0
 340,Centro Cultural Lo de Alber,s/d,37.0
 261,Centro Cultural Macedonia,s/d,112.0
@@ -364,12 +364,12 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 898,Centro Cultural Minga,s/d,74.0
 845,Centro Cultural Misiones  Vicente Cidade ,s/d,77.0
 757,Centro Cultural Mujeres de la Patria,s/d,149.0
-695,Centro Cultural Municipal,150.0,304.0
-693,Centro Cultural Municipal,600.0,233.0
-890,Centro Cultural Municipal,240.0,200.0
-812,Centro Cultural Municipal,s/d,83.0
-767,Centro Cultural Municipal,s/d,157.0
 958,Centro Cultural Municipal,s/d,191.0
+693,Centro Cultural Municipal,600.0,233.0
+695,Centro Cultural Municipal,150.0,304.0
+812,Centro Cultural Municipal,s/d,81.0
+767,Centro Cultural Municipal,s/d,157.0
+890,Centro Cultural Municipal,240.0,200.0
 945,Centro Cultural Municipal,s/d,261.0
 983,Centro Cultural Municipal Dante Alighieri,300.0,267.0
 687,Centro Cultural Municipal El Parque,70.0,115.0
@@ -403,7 +403,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 297,Centro Cultural Poeta Barbieri,s/d,20.0
 569,Centro Cultural Polaridades,s/d,370.0
 634,Centro Cultural Policarpo,s/d,26.0
-697,Centro Cultural Polivalente Eva Perón,600.0,315.0
+697,Centro Cultural Polivalente Eva Perón,600.0,314.0
 763,Centro Cultural Político y Social Espacio Abierto Nunca Menos,s/d,116.0
 761,Centro Cultural Provincial ,s/d,376.0
 973,Centro Cultural Provincial Francisco Paco Urondo,800.0,250.0
@@ -413,7 +413,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 882,Centro Cultural Puentes,s/d,47.0
 360,Centro Cultural Quinta Galli Este,100.0,37.0
 8,Centro Cultural Raices,60.0,112.0
-593,Centro Cultural Raices,s/d,437.0
+593,Centro Cultural Raices,s/d,436.0
 704,Centro Cultural Raices Soberanas,s/d,366.0
 612,Centro Cultural Raíces Compañeras,150.0,487.0
 160,Centro Cultural Recoleta,s/d,112.0
@@ -421,10 +421,10 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 1013,Centro Cultural Roberto Fontanarrosa,s/d,397.0
 976,Centro Cultural Roma,250.0,250.0
 581,Centro Cultural Roque Perez,s/d,396.0
-920,Centro Cultural San Francisco Del Monte de Oro,s/d,41.0
+920,Centro Cultural San Francisco Del Monte de Oro,s/d,40.0
 258,Centro Cultural San Martin,s/d,112.0
 677,Centro Cultural San Vicente,150.0,76.0
-727,Centro Cultural Siete Corrientes - Sala Flotante -,60.0,80.0
+727,Centro Cultural Siete Corrientes - Sala Flotante -,60.0,78.0
 1023,Centro Cultural Soc. Italiana,300.0,417.0
 486,Centro Cultural Social y Político Olga Vázquez ,s/d,257.0
 196,Centro Cultural Sofía Gempel Arte,s/d,112.0
@@ -468,12 +468,12 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 987,Centro Cultural. Pueblo Esther,s/d,397.0
 657,Centro De Arte Contemporáneo  C.A.C,s/d,76.0
 702,Centro Holístico Allá Arriba,70.0,366.0
-538,Centro Integrador Comunitario en el  Barrio Santo Domingo,100.0,297.0
-1033,Centro Intercultural de Ecología Social (CIES),s/d,84.0
+538,Centro Integrador Comunitario en el  Barrio Santo Domingo,100.0,299.0
+1033,Centro Intercultural de Ecología Social (CIES),s/d,82.0
 58,Centro Kultural Trivenchi,200.0,112.0
 893,Centro Municipal de Arte CEMAR,300.0,200.0
 365,Centro Municipal de Arte de Avellaneda  CMA,500.0,37.0
-895,Centro Municipal de Cultura,300.0,410.0
+895,Centro Municipal de Cultura,300.0,409.0
 583,Centro Municipal de Cultura S.A Giles,s/d,408.0
 518,Centro Nativo Acuyai,s/d,285.0
 294,Centro Politico Cultural El Hormiguero,150.0,112.0
@@ -511,10 +511,10 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 108,Club Cultural Malvinas Argentinas,s/d,112.0
 218,Club Cultural Matienzo,400.0,112.0
 202,Club De Musica,139.0,112.0
-820,Club Gimnasia y Esgrima,s/d,81.0
+820,Club Gimnasia y Esgrima,s/d,79.0
 55,Club Premier,451.0,112.0
 368,Club Reconquista de Suipacha,s/d,37.0
-537,Club Social Maipu,s/d,297.0
+537,Club Social Maipu,s/d,299.0
 774,Club Social Parana,s/d,338.0
 955,Club Social Villa Constitución,s/d,125.0
 124,Club Social Y Deportivo Yupanqui,200.0,112.0
@@ -528,7 +528,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 666,Comarca de Creadores,s/d,76.0
 1055,Comedor Cultural San Jose Solidario,s/d,510.0
 81,Complejo Artmedia,s/d,112.0
-911,Complejo Auditorio Juan Victoria,976.0,78.0
+911,Complejo Auditorio Juan Victoria,976.0,84.0
 532,Complejo Cultural Banfield Teatro Ensamble,250.0,286.0
 959,Complejo Cultural Las Toscas,s/d,193.0
 741,Complejo Cultural Provincial Guido Miranda,s/d,419.0
@@ -540,7 +540,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 79,Conservatorio Grassi Urquiza,50.0,112.0
 362,Cooperativa Cimarrón de Comunicación y Cultura,s/d,37.0
 273,Cooperativa Cultural Qi,100.0,112.0
-595,Cooperativa Las Canaletas,s/d,440.0
+595,Cooperativa Las Canaletas,s/d,441.0
 635,Cooperativa de Trabajo Cachalahueca Ltda,s/d,26.0
 797,Coquena Centro Cultural,100.0,142.0
 520,Cosecha - Espacio musical,s/d,286.0
@@ -553,7 +553,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 246,Cusca Risun,91.0,112.0
 67,Cátulo. Casa Cultural,s/d,112.0
 967,DEMOS Comunidad Cultural Emergente,200.0,250.0
-1036,DIVAS Diversidad Valiente Santiagueña,70.0,84.0
+1036,DIVAS Diversidad Valiente Santiagueña,70.0,82.0
 292,"DYNART, Espacio de arte",s/d,112.0
 440,Dada club de arte,s/d,245.0
 171,Deira,750.0,112.0
@@ -578,7 +578,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 700,Eden Hotel,500.0,366.0
 877,El Acopio ,40.0,14.0
 84,El Arbol Cultural (Sas) / La Casa Del Arbol,94.0,112.0
-1051,El Arbol de Galeano-Club Cultural,s/d,82.0
+1051,El Arbol de Galeano-Club Cultural,s/d,80.0
 1003,El Aserradero Rosario,95.0,397.0
 467,El Bosquecito Vivero Experimental. Espacio Cultural ,s/d,257.0
 638,El Cebil,s/d,75.0
@@ -603,7 +603,7 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 965,El Jardín de los Presentes Casa Arte,s/d,250.0
 61,El Mas Aca Club Cultural,150.0,112.0
 453,El Medio Aljibe,s/d,257.0
-1034,El Observatorio,s/d,84.0
+1034,El Observatorio,s/d,82.0
 835,El Origen de i,s/d,293.0
 1065,El Planeta de Origen,s/d,496.0
 229,El Puente,150.0,112.0
@@ -632,15 +632,15 @@ ID_CC,Nombre,Capacidad,ID_DEPTO
 144,Escape,60.0,112.0
 277,Escash Espacio Cultural,s/d,112.0
 51,"Escuela Popular de Arte ""Esther Ballestrino""",s/d,112.0
-400,Escuela de Actividades Culturales Dora Pietranera de Donadio,s/d,99.0
+400,Escuela de Actividades Culturales Dora Pietranera de Donadio,s/d,98.0
 940,"Espacio
 Malvinas",s/d,221.0
 665,Espacio  artístico  Universo de Sueños,s/d,76.0
 722,Espacio Abierto José de la Quintana,s/d,451.0
+809,Espacio Arte Propio,s/d,81.0
 813,Espacio Arte Propio,s/d,303.0
-809,Espacio Arte Propio,s/d,83.0
 531,Espacio Asterisco,s/d,286.0
-729,Espacio Bohemio Corrientes,s/d,80.0
+729,Espacio Bohemio Corrientes,s/d,78.0
 45,Espacio Boliv.ar,s/d,112.0
 13,Espacio Cafferana 86,s/d,112.0
 981,Espacio Crux,s/d,267.0
@@ -648,7 +648,7 @@ Malvinas",s/d,221.0
 755,"Espacio Cultural ""Kultural 5""",0,149.0
 170,Espacio Cultural Almagro,s/d,112.0
 73,Espacio Cultural Benigno,50.0,112.0
-915,Espacio Cultural Cadiz,s/d,78.0
+915,Espacio Cultural Cadiz,s/d,84.0
 963,Espacio Cultural Casablanca,s/d,250.0
 37,Espacio Cultural Centro Comunitario Juanito Laguna,s/d,112.0
 97,Espacio Cultural Chacra De Los Remedios,s/d,112.0
@@ -656,7 +656,7 @@ Malvinas",s/d,221.0
 922,Espacio Cultural Coloniarte,s/d,197.0
 807,Espacio Cultural Comunitario – Comparsa los Caprichosos de Tilcara,s/d,476.0
 927,Espacio Cultural Cuyo Arte,s/d,
-808,Espacio Cultural De Ida y Vuelta,s/d,83.0
+808,Espacio Cultural De Ida y Vuelta,s/d,81.0
 94,Espacio Cultural Defensa,s/d,112.0
 59,Espacio Cultural Del Sur,s/d,112.0
 31,Espacio Cultural Dinamo,80.0,112.0
@@ -675,7 +675,7 @@ Malvinas",s/d,221.0
 698,Espacio Cultural Las Chicharras,s/d,366.0
 505,Espacio Cultural Leonardo Favio ,s/d,257.0
 182,Espacio Cultural Lineas De Fuga,s/d,112.0
-838,Espacio Cultural Los Chinos,s/d,299.0
+838,Espacio Cultural Los Chinos,s/d,297.0
 153,Espacio Cultural Marco Del Pont,s/d,112.0
 745,Espacio Cultural Mil Flores Barranqueras,s/d,419.0
 383,Espacio Cultural Motor Colectivo,s/d,43.0
@@ -686,7 +686,7 @@ Malvinas",s/d,221.0
 703,Espacio Cultural Takay Nina ,s/d,366.0
 231,Espacio Cultural Tinta Roja,s/d,112.0
 4,Espacio Cultural Urbano,140.0,112.0
-857,Espacio Cultural Yopará,s/d,439.0
+857,Espacio Cultural Yopará,s/d,440.0
 444,Espacio Disparate Casa de Artes,90.0,265.0
 281,Espacio Dos Puntos,s/d,112.0
 151,Espacio EK' arte.movimiento,s/d,112.0
@@ -715,8 +715,8 @@ Malvinas",s/d,221.0
 715,Espacio cultural Los Molles,s/d,422.0
 412,Espacio cultural producciones independientes,s/d,186.0
 900,"Espacio cultural y feria Punto Artesanal, bien cultural",s/d,74.0
-811,Espacio de Arte GRIS,s/d,83.0
-822,Espacio de Fotografía Máximo Arias ,s/d,81.0
+811,Espacio de Arte GRIS,s/d,81.0
+822,Espacio de Fotografía Máximo Arias ,s/d,79.0
 417,Espacio de arte AmArt,s/d,199.0
 381,Espacio por el Arte EPA,s/d,43.0
 298,"Espacio y Casa Cultural ""El Refugio""",s/d,22.0
@@ -754,10 +754,10 @@ Malvinas",s/d,221.0
 590,Fundación Crear Vale La Pena,60.0,421.0
 723,Fundación Holderlin,30.0,451.0
 351,Fundación Isla Maciel,s/d,37.0
-803,Fundación Jama: Espacio Cultural-La Esquina-. ,s/d,441.0
-1048,Fundación Mate Cocido,s/d,82.0
+803,Fundación Jama: Espacio Cultural-La Esquina-. ,s/d,439.0
+1048,Fundación Mate Cocido,s/d,80.0
 66,Fundación Naum Knop,s/d,112.0
-1042,Fundación para el desarrollo de las artes escénicas - FUNDAE,s/d,82.0
+1042,Fundación para el desarrollo de las artes escénicas - FUNDAE,s/d,80.0
 613,Fusión 3,s/d,487.0
 177,Galpon Cultural El Hueco,s/d,112.0
 295,Galpon Cultural Piedrabuenarte,s/d,112.0
@@ -795,15 +795,15 @@ Malvinas",s/d,221.0
 904,Kunu`u Espacio para las Infancias,s/d,74.0
 378,KÁNIKA,s/d,43.0
 308,LA CASA,s/d,22.0
-1043,LA CASONA,s/d,82.0
+1043,LA CASONA,s/d,80.0
 710,LA LA LA CENTRO ARTISTICO,s/d,382.0
 733,LA MARAÑA,s/d,277.0
 994,LA USINA,s/d,397.0
 664,LAN El Parisino,700.0,76.0
-825,LOS 2 AMIGOS CULTURAL,s/d,81.0
+825,LOS 2 AMIGOS CULTURAL,s/d,79.0
 547,La Antigua Cultural,s/d,312.0
 71,La Arena,s/d,112.0
-434,La Bicicletería,s/d,237.0
+434,La Bicicletería,s/d,236.0
 471,"La Bicicletería, Creación Colectiva",100.0,257.0
 245,La Bisagra,s/d,112.0
 118,La Brecha,s/d,112.0
@@ -818,7 +818,7 @@ Malvinas",s/d,221.0
 388,La Casa Del Fondo,s/d,44.0
 300,La Casa Espacio de Debate y Cultura,120.0,22.0
 206,La Casa Roja,s/d,112.0
-912,La Casa Roja Espacio,s/d,78.0
+912,La Casa Roja Espacio,s/d,84.0
 418,La Casa de Enfrente,s/d,199.0
 688,La Casa de la Cultura,s/d,115.0
 470,La Casa espacio cultural,s/d,257.0
@@ -830,14 +830,14 @@ Malvinas",s/d,221.0
 191,La Cazona De Flores,150.0,112.0
 499,La Chicharra,s/d,257.0
 232,La Chilinga,s/d,112.0
-1049,La Colorida,53.0,82.0
+1049,La Colorida,53.0,80.0
 599,La Compañía Tandil,40.0,469.0
 166,La Confiteria,250.0,112.0
 867,La Conrado Centro Cultural,80.0,123.0
 64,La Conversa,s/d,112.0
 540,La Cultural Dumer,200.0,310.0
 154,La Escalera Espacio De Arte,50.0,112.0
-558,La Esquina Arte y Cultura,s/d,11.0
+558,La Esquina Arte y Cultura,s/d,12.0
 732,La Fabrica Cultural ,s/d,277.0
 620,"La Galerita, experiencias creativas",s/d,503.0
 628,La Galpona - laboratorio de ideas,s/d,503.0
@@ -866,14 +866,14 @@ Malvinas",s/d,221.0
 641,La Primitiva ,s/d,75.0
 752,La Puerta,s/d,59.0
 554,La Puerta Creativa,s/d,325.0
-728,La Pépinière,s/d,80.0
+728,La Pépinière,s/d,78.0
 88,La Quince Espacio Cultural,150.0,112.0
 1030,La Quinta,150.0,502.0
 205,La Scala De San Telmo,102.0,112.0
 274,La Senda,50.0,112.0
-1045,La Soñada Epacio Cultural y Producciones,s/d,82.0
+1045,La Soñada Epacio Cultural y Producciones,s/d,80.0
 932,La Tambora Cultural,s/d,
-917,La Tetera,s/d,78.0
+917,La Tetera,s/d,84.0
 1007,"La Tornería, Espacio Cultural",s/d,397.0
 530,La Troupe,s/d,286.0
 283,La Turba,s/d,112.0
@@ -900,11 +900,11 @@ Malvinas",s/d,221.0
 1059,MAGMA Espacio Cultural,s/d,383.0
 686,MANSA MANSION A LA VERA DEL RIO,s/d,115.0
 523,MONOCICLO CLUB DE ARTE,s/d,286.0
-804,"MULTIESPACIO CULTURAL ""NUEVA TRADICION"" ",s/d,441.0
+804,"MULTIESPACIO CULTURAL ""NUEVA TRADICION"" ",s/d,439.0
 603,Macanudo,s/d,469.0
 515,Macá Cultura ,s/d,257.0
 995,Madma espacio,s/d,397.0
-1047,Magic Music Box,s/d,82.0
+1047,Magic Music Box,s/d,80.0
 138,Mango,150.0,112.0
 872,Manta residencia taller ,s/d,260.0
 379,Maroma,s/d,43.0
@@ -924,7 +924,7 @@ Malvinas",s/d,221.0
 208,Multiespacio Pasco,s/d,112.0
 98,Munar,s/d,112.0
 413,Mundo Dios,s/d,199.0
-858,Municipalidad de 25 de Mayo,s/d,4.0
+858,Municipalidad de 25 de Mayo,s/d,8.0
 429,MÚSICA EN SAN MARTÍN,s/d,203.0
 740,Nanas suena bien,s/d,419.0
 255,Naranja Verde,50.0,112.0
@@ -939,7 +939,7 @@ Malvinas",s/d,221.0
 107,Otra Historia,145.0,112.0
 249,Otro Divague Espacio De Arte,20.0,112.0
 117,Otro Lado,100.0,112.0
-1046,PUERTO CULTURAL LIBERTAD,s/d,82.0
+1046,PUERTO CULTURAL LIBERTAD,s/d,80.0
 1012,PUERTO DE IDEAS,s/d,397.0
 524,Padre Mugica,s/d,286.0
 259,Panda Rojo Espacio Cultural,80.0,112.0
@@ -947,12 +947,12 @@ Malvinas",s/d,221.0
 778,Parientes Del Bar,s/d,338.0
 846,Paseo Bosetti,s/d,77.0
 844,Paseo Cultural La Terminal,600.0,77.0
-914,Patricias Espacio,s/d,78.0
+914,Patricias Espacio,s/d,84.0
 865,Pehuenia Cultural del Neuquen,s/d,123.0
 384,Pez Dorado Espacio Cultural,s/d,43.0
 847,Peña Itapúa ,200.0,77.0
 681,"Pico de tinta, espacio taller",80.0,115.0
-816,Pitcher Cultural,s/d,79.0
+816,Pitcher Cultural,s/d,83.0
 227,Planta Alta,95.0,112.0
 1001,Plataforma Lavarden ,400.0,397.0
 346,Polideportivo Gabino Alegre,500.0,37.0
@@ -1032,7 +1032,7 @@ Malvinas",s/d,221.0
 880,Surprise,s/d,47.0
 262,Swing City,s/d,112.0
 270,Tacuari Tango,100.0,112.0
-810,Taller Rayuela,s/d,83.0
+810,Taller Rayuela,s/d,81.0
 592,Taller de La Ribera,s/d,421.0
 150,Tano Cabrón,s/d,112.0
 24,Teatrarte,50.0,112.0
