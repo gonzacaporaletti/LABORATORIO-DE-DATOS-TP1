@@ -633,7 +633,9 @@ consultaSQL = """
               """
 Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
 
+
 #ahora selecciono solo que necesito
+#hay algunos departamentos que no se encuentran en el df de reporte demográfico, por lo que devuelve Nulls en esa sección de esa tabla, interpretaremos esos Null como 0, para mantener el typo de dato a lo largo de la tabla.
 
 consultaSQL=''' 
                 SELECT 
@@ -641,7 +643,7 @@ consultaSQL='''
                 Departamento,
                 Cantidad_EE AS "Cantidad EE",
                 Cantidad_CC AS "Cantidad CC",
-                Poblacion_Total AS "Población Total"
+                CASE WHEN Poblacion_Total IS Null THEN '0' ELSE Poblacion_Total END AS "Población Total"
                 FROM Cant_CC_EE_Pob
                 '''
 Cant_CC_EE_Pob = dd.sql(consultaSQL).df()
